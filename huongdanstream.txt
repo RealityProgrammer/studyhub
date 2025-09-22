@@ -1,0 +1,5 @@
+https://api.videosdk.live/v2/rooms post
+
+headers
+
+Authorization   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJjZjBlZTNkZC0yZjQ1LTRkOTctYTJkZS00NzgxMjVhZGYxODUiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTc0MzgyNTI3NywiZXhwIjoxNzQ2NDE3Mjc3fQ.8b_JiJXu-v_g9nfiwXlhDx45KbJ5Mf-grycBh5t5gpA

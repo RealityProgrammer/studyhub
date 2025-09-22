@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "img": "/images/students-feedback/01.jpg",
+    "avatar": "/images/students-feedback/02.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Giáo viên rất tận tâm, bài giảng dễ hiểu và thú vị. Tôi cảm thấy rất hài lòng khi tham gia khóa học này.",
+    "author": "Nguyễn Hoa Vinh",
+    "position": "Sinh viên"
+  },
+  {
+    "id": 2,
+    "img": "/images/students-feedback/02.jpg",
+    "avatar": "/images/students-feedback/02.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Giáo viên giảng bài rất nhiệt tình, dễ hiểu. Tôi đã áp dụng được nhiều kiến thức vào thực tế.",
+    "author": "Trần Minh Tuấn",
+    "position": "Học sinh"
+  },
+  {
+    "id": 3,
+    "img": "/images/students-feedback/04.jpg",
+    "avatar": "/images/students-feedback/03.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Bài giảng rõ ràng, ví dụ dễ hiểu và rất thực tế. Tôi học được rất nhiều điều bổ ích từ giáo viên.",
+    "author": "Lê Thị Mai",
+    "position": "Sinh viên"
+  },
+  {
+    "id": 4,
+    "img": "/images/students-feedback/06.jpg",
+    "avatar": "/images/students-feedback/04.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Giáo viên có cách giảng bài sáng tạo và dễ hiểu. Tôi rất thích các bài giảng của thầy.",
+    "author": "Phạm Anh Duy",
+    "position": "Học sinh"
+  },
+  {
+    "id": 5,
+    "img": "/images/students-feedback/02.jpg",
+    "avatar": "/images/students-feedback/05.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Giáo viên rất thân thiện và sẵn sàng hỗ trợ học viên. Tôi cảm thấy rất thoải mái khi học.",
+    "author": "Đặng Thị Hoa",
+    "position": "Sinh viên"
+  },
+  {
+    "id": 6,
+    "img": "/images/students-feedback/06.jpg",
+    "avatar": "/images/students-feedback/06.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Giảng viên luôn tận tâm, giải đáp mọi thắc mắc của học viên. Tôi rất hài lòng với khóa học này.",
+    "author": "Nguyễn Minh Huy",
+    "position": "Học sinh"
+  },
+  {
+    "id": 7,
+    "img": "/images/students-feedback/01.jpg",
+    "avatar": "/images/students-feedback/07.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Giảng viên luôn tạo động lực cho học viên. Các bài học rất thú vị và dễ hiểu.",
+    "author": "Trần Văn Nam",
+    "position": "Sinh viên"
+  },
+  {
+    "id": 8,
+    "img": "/images/students-feedback/02.jpg",
+    "avatar": "/images/students-feedback/08.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Một khóa học tuyệt vời với giáo viên nhiệt tình và thân thiện. Tôi đã học được rất nhiều kiến thức bổ ích.",
+    "author": "Trịnh Trần Phương Tuấn",
+    "position": "Học sinh"
+  },
+  {
+    "id": 9,
+    "img": "/images/students-feedback/04.jpg",
+    "avatar": "/images/students-feedback/09.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Giáo viên rất giỏi trong việc truyền đạt kiến thức. Bài giảng dễ hiểu và có tính ứng dụng cao.",
+    "author": "Đặng Tiến Hoàng",
+    "position": "Sinh viên"
+  },
+  {
+    "id": 10,
+    "img": "/images/students-feedback/06.jpg",
+    "avatar": "/images/students-feedback/10.png",
+    "quoteIcon": "/images/students-feedback/19.png",
+    "content": "Một trải nghiệm học tập tuyệt vời! Giáo viên nhiệt tình và luôn tạo cảm hứng cho học viên.",
+    "author": "Lý Quang Huy",
+    "position": "Học sinh"
+  }
+]
