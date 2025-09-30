@@ -1,7 +1,5 @@
 package com.hunre.it.webstudyonline.config;
 
-import com.hunre.it.webstudyonline.jwt.JwtAuthenticationEntryPoint;
-import com.hunre.it.webstudyonline.jwt.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,8 +15,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.hunre.it.webstudyonline.jwt.JwtAuthenticationEntryPoint;
+import com.hunre.it.webstudyonline.jwt.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -72,6 +71,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/api/bill_details/create").authenticated()
                         .requestMatchers("/api/bill_details/list/**").authenticated()
                         .requestMatchers("/api/cart/add","/api/cart/update/**","/api/cart/delete/**").authenticated()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs.yaml").permitAll()
                         .anyRequest().authenticated()
                 );
 
