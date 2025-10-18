@@ -1,20 +1,12 @@
 package com.hunre.it.webstudyonline.model.dto.auth;
 
-public class VerifyUserDto {
-    private String email;
+public class VerifyingUserDto {
     private String verificationCode;
+    private SignUpUserDto userDto;
 
-    public VerifyUserDto(String email, String verificationCode) {
-        this.email = email;
+    public VerifyingUserDto(String verificationCode, SignUpUserDto userDto) {
         this.verificationCode = verificationCode;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        this.userDto = userDto;
     }
 
     public String getVerificationCode() {
@@ -23,5 +15,13 @@ public class VerifyUserDto {
 
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
+    }
+
+    public SignUpUserDto getUserDto() {
+        return userDto;
+    }
+
+    public void setUserDto(SignUpUserDto userDto) {
+        this.userDto = userDto;
     }
 }

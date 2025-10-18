@@ -6,12 +6,14 @@ import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NetworkConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import com.hunre.it.webstudyonline.model.dto.auth.SignUpUserDto;
+import com.hunre.it.webstudyonline.model.dto.auth.VerifyingUserDto;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class HazelcastConfig {
-
     @Bean(name = "hazelcastServerInstance")
     public HazelcastInstance hazelcastServerInstance() {
         Config config = new Config();
@@ -29,6 +31,9 @@ public class HazelcastConfig {
         MapConfig mapConfig = new MapConfig("otpCodes")
                 .setTimeToLiveSeconds(60);
         config.addMapConfig(mapConfig);
+
+        config.getSerializationConfig().getCompactSerializationConfig().addClass(SignUpUserDto.class);
+        config.getSerializationConfig().getCompactSerializationConfig().addClass(VerifyingUserDto.class);
 
         return Hazelcast.newHazelcastInstance(config);
     }

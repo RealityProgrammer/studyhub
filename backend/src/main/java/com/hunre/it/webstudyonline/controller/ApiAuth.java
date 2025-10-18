@@ -4,10 +4,7 @@ package com.hunre.it.webstudyonline.controller;
 import com.hunre.it.webstudyonline.entity.AccountEntity;
 import com.hunre.it.webstudyonline.mapper.AccountMapper;
 import com.hunre.it.webstudyonline.model.dto.AccountDto;
-import com.hunre.it.webstudyonline.model.dto.auth.AuthDto;
-import com.hunre.it.webstudyonline.model.dto.auth.LoginUserDto;
-import com.hunre.it.webstudyonline.model.dto.auth.RegisterUserDto;
-import com.hunre.it.webstudyonline.model.dto.auth.VerifyUserDto;
+import com.hunre.it.webstudyonline.model.dto.auth.*;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.LoginResponse;
 import com.hunre.it.webstudyonline.security.service.JwtService;
@@ -30,8 +27,8 @@ public class ApiAuth {
 
 
     @PostMapping("/signup")
-    public ResponseEntity<BaseResponse<RegisterUserDto>> signup(@RequestBody RegisterUserDto input) {
-        BaseResponse<RegisterUserDto> userDTO = iAuthService.signup(input);
+    public ResponseEntity<BaseResponse<SignUpUserDto>> signup(@RequestBody SignUpUserDto input) {
+        BaseResponse<SignUpUserDto> userDTO = iAuthService.signup(input);
         return ResponseEntity.ok(userDTO);
     }
 
@@ -55,7 +52,7 @@ public class ApiAuth {
             iAuthService.verifyUser(verifyUserDto);
             return ResponseEntity.ok("Account verified successfully");
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 

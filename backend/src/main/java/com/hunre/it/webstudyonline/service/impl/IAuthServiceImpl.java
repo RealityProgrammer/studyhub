@@ -6,10 +6,7 @@ import com.hazelcast.map.IMap;
 import com.hunre.it.webstudyonline.entity.AccountEntity;
 import com.hunre.it.webstudyonline.entity.RoleEntity;
 import com.hunre.it.webstudyonline.mapper.AuthMapper;
-import com.hunre.it.webstudyonline.model.dto.AccountDto;
-import com.hunre.it.webstudyonline.model.dto.auth.LoginUserDto;
-import com.hunre.it.webstudyonline.model.dto.auth.RegisterUserDto;
-import com.hunre.it.webstudyonline.model.dto.auth.VerifyUserDto;
+import com.hunre.it.webstudyonline.model.dto.auth.*;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.repository.AccountRepository;
 import com.hunre.it.webstudyonline.repository.RoleRepository;
@@ -17,12 +14,12 @@ import com.hunre.it.webstudyonline.service.IAuthService;
 import com.hunre.it.webstudyonline.service.IEmailService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import jakarta.mail.MessagingException;
+import kotlin.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -50,22 +47,23 @@ public class IAuthServiceImpl implements IAuthService {
     @Qualifier("hazelcastServerInstance")
     private HazelcastInstance hazelcastInstance;
 
-
     @Override
-    public BaseResponse<RegisterUserDto> signup(RegisterUserDto registerUserDto) {
-        BaseResponse<RegisterUserDto> response  = new BaseResponse<>();
+    public BaseResponse<SignUpUserDto> signup(SignUpUserDto signUpUserDto) {
+        BaseResponse<SignUpUserDto> response  = new BaseResponse<>();
         String verificationCode = generateVerificationCode();
 
-        IMap<String, String> otpMap = hazelcastInstance.getMap("otpCodes");
-        otpMap.put(registerUserDto.getEmail(), verificationCode, 60, TimeUnit.SECONDS);
+        IMap<String, VerifyingUserDto> otpMap = hazelcastInstance.getMap("otpCodes");
+        otpMap.put(signUpUserDto.getEmail(), new VerifyingUserDto(verificationCode, signUpUserDto), 60, TimeUnit.SECONDS);
+
         try {
-            sendVerificationEmail(registerUserDto.getEmail(), verificationCode);
-            response.setData(registerUserDto);
+            sendVerificationEmail(signUpUserDto.getEmail(), verificationCode);
+            response.setData(signUpUserDto);
             response.setCode(HttpStatus.OK.value());
             response.setMessage(Constant.HTTP_MESSAGE.SUCCESS);
         } catch (Exception e) {
             throw new RuntimeException("Failed to send verification email", e);
         }
+
         return response;
     }
 
@@ -87,26 +85,33 @@ public class IAuthServiceImpl implements IAuthService {
 
     @Override
     public void verifyUser(VerifyUserDto verifyUserDto) {
-        IMap<String, String> otpMap = hazelcastInstance.getMap("otpCodes");
-        String storedCode = otpMap.get(verifyUserDto.getRegisterUserDto().getEmail());
-        if (storedCode == null || !storedCode.equals(verifyUserDto.getVerificationCode())){
+        IMap<String, VerifyingUserDto> otpMap = hazelcastInstance.getMap("otpCodes");
+
+        VerifyingUserDto verifying = otpMap.get(verifyUserDto.getEmail());
+
+        if (verifying == null || !verifying.getVerificationCode().equals(verifyUserDto.getVerificationCode())) {
             throw new RuntimeException("Invalid or expired verification code");
         }
+
+        otpMap.remove(verifyUserDto.getEmail());
+
+        SignUpUserDto signedUpUser = verifying.getUserDto();
+
         AccountEntity account = new AccountEntity(
-                verifyUserDto.getRegisterUserDto().getCode(),
-                verifyUserDto.getRegisterUserDto().getFullname(),
-                passwordEncoder.encode(verifyUserDto.getRegisterUserDto().getPassword()),
-                verifyUserDto.getRegisterUserDto().getEmail(),
-                verifyUserDto.getRegisterUserDto().getPhone()
+            "UID"+ LocalDateTime.now().getYear() + 00001,
+            signedUpUser.getFullname(),
+            passwordEncoder.encode(signedUpUser.getPassword()),
+            signedUpUser.getEmail(),
+            signedUpUser.getPhone()
         );
         account.setEnabled(false);
         account.setDeleted(false);
-        Set<RoleEntity> roles = verifyUserDto.getRegisterUserDto().getRoleIds().stream().map(
-                roleId -> roleRepository.findById(roleId).orElseThrow(() -> new UsernameNotFoundException("Role not found"))
-        ).collect(Collectors.toSet());
+
+        // Make created user have role USER by default.
+        Set<RoleEntity> roles = roleRepository.findByCode("USER").stream().collect(Collectors.toSet());
+
         account.setRoles(roles);
         account.setEnabled(true);
-        account.setCode("UID"+ LocalDateTime.now().getYear()+00001);
         accountRepository.save(account);
     }
 
@@ -117,18 +122,22 @@ public class IAuthServiceImpl implements IAuthService {
             throw new RuntimeException("Account is already verified");
         }
 
-        IMap<String, String> otpMap = hazelcastInstance.getMap("otpCodes");
-        String verificationCode = otpMap.get(email);
-        if (verificationCode == null) {
-            verificationCode = generateVerificationCode();
-            otpMap.put(email, verificationCode, 60, TimeUnit.SECONDS);
+        IMap<String, VerifyingUserDto> otpMap = hazelcastInstance.getMap("otpCodes");
+
+        VerifyingUserDto verifying = otpMap.get(email);
+
+        if (verifying == null) {
+            throw new RuntimeException("Resend verification code requires initial sending.");
         }
+
+        verifying.setVerificationCode(generateVerificationCode());
+        otpMap.put(email, verifying, 60, TimeUnit.SECONDS);
+
         try {
-            sendVerificationEmail(email, verificationCode);
+            sendVerificationEmail(email, verifying.getVerificationCode());
         } catch (Exception e) {
             throw new RuntimeException("Failed to send verification email", e);
         }
-
     }
 
     @Override
