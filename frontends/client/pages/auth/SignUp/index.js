@@ -9,22 +9,21 @@ import api from "../../../src/route/route";
 
 export default function SignUpModule() {
     const [users, setUsers] = useState(Users);
-    const [formData, setFormData] = useState({ fullname: '', email: '', phone: '', password: '',"roleIds": [2] });
+    const [formData, setFormData] = useState({ fullname: '', email: '', phone: '', password: '' });
     const [message, setMessage] = useState('');
-    const [dataOtp, setDataOtp] = useState({verificationCode: '',registerUserDto: ''});
+    const [dataOtp, setDataOtp] = useState({ verificationCode: '', email: '' });
     const [isOtpModalVisible, setIsOtpModalVisible] = useState(false);
     const dispatch = useDispatch();
     const router = useRouter();
 
     const handleChange = (e) => {
-            const { id, value } = e.target;
-            setFormData((prevData) => ({ ...prevData, [id]: value }));
-            setDataOtp((prevData) => ({ ...prevData, registerUserDto: formData }));
-    };
-    const verificationCode = (e) => {
         const { id, value } = e.target;
-        const updatedDataOtp = { ...dataOtp, [id]: value };
-        setDataOtp(updatedDataOtp);
+        setFormData((prevData) => ({ ...prevData, [id]: value }));
+        setDataOtp(previous => ({ ...previous, email: formData.email }));
+    };
+
+    const verificationCode = (e) => {
+        setDataOtp(previous => ({ ...previous, verificationCode: e.target.value }));
     };
 
     const handleSignUp = (e) => {
@@ -33,7 +32,7 @@ export default function SignUpModule() {
         api.signUp(formData).then((response) => {
             if (response.code === 200) {
                 setIsOtpModalVisible(true);
-            }else {
+            } else {
                 document.getElementById("btnSignup").disabled = false;
             }
         })
@@ -41,7 +40,6 @@ export default function SignUpModule() {
 
     const handleOtpSubmit = (e) => {
         e.preventDefault();
-        dataOtp.registerUserDto.password = document.getElementById("password").value;
         api.verifyOtp(dataOtp).then((response) => {
             if (response === "Account verified successfully") {
                 router.push("/login");
@@ -128,27 +126,28 @@ export default function SignUpModule() {
                             justifyContent: 'center',
                             gap: '20px',
                         }}>
-                                <input
-                                    id="verificationCode"
-                                    type="text"
-                                    maxLength="6"
-                                    required
-                                    onChange={verificationCode}
-                                    style={{
-                                        width: '60%',
-                                        height: '45px',
-                                        textAlign: 'center',
-                                        fontSize: '18px',
-                                        border: '1px solid #ccc',
-                                        borderRadius: '5px',
-                                        outline: 'none',
-                                        transition: 'background 0.3s',
-                                        backgroundColor: '#ffffff',
-                                    }}
-                                    onFocus={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.8)'}
-                                    onBlur={(e) => e.target.style.background = '#ffffff'}
-                                />
+                            <input
+                                id="verificationCode"
+                                type="text"
+                                maxLength="6"
+                                required
+                                onChange={verificationCode}
+                                style={{
+                                    width: '60%',
+                                    height: '45px',
+                                    textAlign: 'center',
+                                    fontSize: '18px',
+                                    border: '1px solid #ccc',
+                                    borderRadius: '5px',
+                                    outline: 'none',
+                                    transition: 'background 0.3s',
+                                    backgroundColor: '#ffffff',
+                                }}
+                                onFocus={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.8)'}
+                                onBlur={(e) => e.target.style.background = '#ffffff'}
+                            />
                         </div>
+
                         <div style={{
                             display: 'flex',
                             justifyContent: 'space-between',
