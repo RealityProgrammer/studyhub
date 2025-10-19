@@ -4,19 +4,29 @@ import com.hunre.it.webstudyonline.entity.BillEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Repository
-public interface BillRepository extends JpaRepository<BillEntity,Long> {
+public interface BillRepository extends JpaRepository<BillEntity,Long>, JpaSpecificationExecutor<BillEntity> {
     @Query(value = "SELECT b FROM BillEntity b WHERE b.deleted=false ")
     Page<BillEntity> findAllByDeletedFalse(Pageable pageable);
+
     @Query(value = "SELECT b FROM BillEntity b WHERE b.deleted=false AND b.accountEntity.email=:email")
     Page<BillEntity> findAllByEmail(String email,Pageable pageable);
+
     @Query(value = "SELECT b FROM BillEntity b WHERE b.deleted=false " +
             "AND (:code IS NULL OR b.code LIKE %:code%)" +
             "AND (:accountName IS NULL OR b.accountEntity.fullname LIKE %:accountName%)")
     Page<BillEntity> findBillByCodeAndAccountName(String code, String accountName, Pageable pageable);
+
     @Query(value = "SELECT COUNT(o) > 0 FROM BillEntity o WHERE o.accountEntity.email=:email")
     boolean checkBill(String email);
+
+    @Query(value = "SELECT b FROM BillEntity b WHERE b.deleted = false AND b.createdAt >= :from AND b.createdAt <= :to")
+    List<BillEntity> findAllByCreatedDateBetween(LocalDateTime from, LocalDateTime to);
 }
