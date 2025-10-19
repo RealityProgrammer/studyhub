@@ -4,6 +4,7 @@ import com.hunre.it.webstudyonline.model.dto.TimeTableDto;
 import com.hunre.it.webstudyonline.model.request.AddTimetableRequest;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
+import com.hunre.it.webstudyonline.service.TimeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +17,14 @@ import java.util.List;
 @RequestMapping("/api/timetable")
 public class TimeTableController {
     @Autowired
-    private ITimeTableService timeTableService;
+    private TimeTableService timeTableService;
+
     @GetMapping("/list")
     public ResponseEntity<ResponsePage<List<TimeTableDto>>> getAllTimeTable(Pageable pageable) {
         ResponsePage<List<TimeTableDto>> responsePage = timeTableService.getAllTimeTables(pageable);
         return ResponseEntity.ok(responsePage);
     }
+
     @GetMapping("/getTimeTable/{gradeId}")
     public ResponseEntity<ResponsePage<List<TimeTableDto>>> getAllTimeTableByGrade(@PathVariable Long gradeId, Pageable pageable) {
         ResponsePage<List<TimeTableDto>> responsePage = timeTableService.getTimeTableByGradeId(gradeId,pageable);

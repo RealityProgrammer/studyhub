@@ -3,6 +3,7 @@ package com.hunre.it.webstudyonline.controller;
 import com.hunre.it.webstudyonline.model.dto.BillDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
+import com.hunre.it.webstudyonline.service.BillService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,7 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class BillController {
     @Autowired
-    private IBillService billService;
+    private BillService billService;
 
     @GetMapping("/list")
     public ResponseEntity<ResponsePage<List<BillDto>>> getAll(Pageable pageable) {

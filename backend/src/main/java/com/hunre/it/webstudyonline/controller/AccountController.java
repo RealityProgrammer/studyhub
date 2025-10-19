@@ -5,6 +5,7 @@ import com.hunre.it.webstudyonline.model.request.ChagePasswordRequest;
 import com.hunre.it.webstudyonline.model.request.UpdateAccountForm;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
+import com.hunre.it.webstudyonline.service.AccountService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,7 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class AccountController {
     @Autowired
-    private IAccountService accountService;
+    private AccountService accountService;
 
     @GetMapping("/list")
     public ResponseEntity<ResponsePage<List<AccountDto>>> getAll(Pageable pageable) {

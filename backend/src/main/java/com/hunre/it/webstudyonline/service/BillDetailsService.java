@@ -44,7 +44,7 @@ public class BillDetailsService {
     private GradeRepository gradeRepository;
     @Autowired
     private  ImageRepository imageRepository;
-    @Override
+
     public ResponsePage<List<BillDetailsDto>> getAllBillDetails(String billId, Pageable pageable) {
         ResponsePage<List<BillDetailsDto>> responsePage = new ResponsePage<>();
         Utils<Long> utils = LongUtils.strToLong(billId);
@@ -63,7 +63,6 @@ public class BillDetailsService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<BillDetailsDto> createBillDetails(BillDetailsDto billDetailsDto) {
         BaseResponse<BillDetailsDto> response = new BaseResponse<>();
         BillDetailsEntity billDetailsEntity = billDetailsMapper.toEntity(billDetailsDto);
@@ -75,7 +74,6 @@ public class BillDetailsService {
         return response;
     }
 
-    @Override
     public ResponsePage<List<CourseDto>> getAllCourseEnrolled(Pageable pageable) {
         ResponsePage<List<CourseDto>> responsePage = new ResponsePage<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -108,7 +106,6 @@ public class BillDetailsService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<CourseDto> getCourse(Long courseId) {
         BaseResponse<CourseDto> response = new BaseResponse<>();
         AuthDto authDto = jwtService.decodeToken();

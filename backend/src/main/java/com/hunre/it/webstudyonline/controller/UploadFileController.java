@@ -1,6 +1,7 @@
 package com.hunre.it.webstudyonline.controller;
 
 import com.hunre.it.webstudyonline.model.dto.ImageDto;
+import com.hunre.it.webstudyonline.service.UploadImageFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,6 @@ import java.io.IOException;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequiredArgsConstructor
 public class UploadFileController {
-
     @Autowired
     private UploadImageFile uploadImageFile;
 

@@ -32,7 +32,6 @@ public class CartService {
     @Autowired
     private JwtService jwtService;
 
-    @Override
     public BaseResponse<List<CartDto>> addCart( List<AddCartForm> addCartForms) {
         AuthDto authDto = jwtService.decodeToken();
         String email = authDto.getEmail();
@@ -53,7 +52,6 @@ public class CartService {
         return response;
     }
 
-    @Override
     public BaseResponse<CartDto> updateQuantity(String id, UpdateCartForm updateCartForm) {
         AuthDto authDto = jwtService.decodeToken();
         String email = authDto.getEmail();
@@ -85,7 +83,6 @@ public class CartService {
         return response;
     }
 
-    @Override
     public BaseResponse<String> deleteCart(List<String> cartIds) {
         AuthDto authDto = jwtService.decodeToken();
         String email = authDto.getEmail();
@@ -115,7 +112,6 @@ public class CartService {
         return response;
     }
 
-    @Override
     public BaseResponse<List<CartDto>> getAllCart() {
         AuthDto authDto = jwtService.decodeToken();
         String email = authDto.getEmail();

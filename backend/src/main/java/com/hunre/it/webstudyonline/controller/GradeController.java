@@ -3,6 +3,7 @@ package com.hunre.it.webstudyonline.controller;
 import com.hunre.it.webstudyonline.model.dto.GradeDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
+import com.hunre.it.webstudyonline.service.GradeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,7 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class GradeController {
     @Autowired
-    private IGradeService iGradeService;
+    private GradeService iGradeService;
     @GetMapping("/list")
     public ResponseEntity<ResponsePage<List<GradeDto>>> getAllGrades(Pageable pageable) {
         ResponsePage<List<GradeDto>> responsePage = iGradeService.getAllGrades(pageable);

@@ -123,7 +123,6 @@ public class PaymentService {
         return hexString.toString();
     }
 
-    @Override
     public String checkPaymentStatus(String orderId) {
         try {
             String requestId = momoConfig.getPARTNER_CODE() + new Date().getTime();
@@ -172,7 +171,6 @@ public class PaymentService {
     }
 
 
-    @Override
     public String createOrder(Map<String, Object> orderRequest) {
         Random rand = new Random();
         int randomId = rand.nextInt(1000000);
@@ -226,7 +224,6 @@ public class PaymentService {
     }
 
 
-    @Override
     public String getOrderStatus(String appTransId) {
         String data = zaloPayConfig.getAppId() + "|" + appTransId + "|" + zaloPayConfig.getKey1();
         String mac = HMACUtil.HMacHexStringEncode(HMACUtil.HMACSHA256, zaloPayConfig.getKey1(), data);

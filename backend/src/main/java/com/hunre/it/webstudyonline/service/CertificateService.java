@@ -35,7 +35,6 @@ public class CertificateService {
     @Autowired
     private JwtService jwtService;
 
-    @Override
     public ResponsePage<List<CertificateDto>> getAllCertificates(Pageable pageable) {
         ResponsePage<List<CertificateDto>> responsePage = new ResponsePage<>();
         Page<CertificateEntity> page = certificateRepository.findAllByDeletedFalse(pageable);
@@ -48,7 +47,6 @@ public class CertificateService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<CertificateDto> addCertificate(CertificateDto certificateDto) {
         BaseResponse<CertificateDto> response = new BaseResponse<>();
         Optional<InforTeacherEntity> check = teacherRepository.findById(certificateDto.getTeacherId());
@@ -67,7 +65,6 @@ public class CertificateService {
         return response;
     }
 
-    @Override
     public BaseResponse<CertificateDto> updateCertificate(String id, CertificateDto certificateDto) {
         BaseResponse<CertificateDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -100,17 +97,14 @@ public class CertificateService {
         return response;
     }
 
-    @Override
     public BaseResponse<CertificateDto> deleteCertificate(String id) {
         return handleCertificate(id,true);
     }
 
-    @Override
     public BaseResponse<CertificateDto> getCertificateById(String id) {
         return handleCertificate(id,false);
     }
 
-    @Override
     public ResponsePage<List<CertificateDto>> findByCertificateAttribute(String certificateName, String issuingOrganization, String certificateType, String certificateNumber, Pageable pageable) {
         ResponsePage<List<CertificateDto>> responsePage = new ResponsePage<>();
         Page<CertificateEntity> page = certificateRepository.findCertificateByAttribute(certificateName,issuingOrganization,certificateType,certificateNumber,pageable);
@@ -123,7 +117,6 @@ public class CertificateService {
         return responsePage;
     }
 
-    @Override
     public ResponsePage<List<CertificateDto>> findCertificateByEmail(Pageable pageable) {
         ResponsePage<List<CertificateDto>> responsePage = new ResponsePage<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -137,7 +130,6 @@ public class CertificateService {
         responsePage.setContent(certificateDtos);
         return responsePage;
     }
-
 
     public BaseResponse<CertificateDto> handleCertificate(String id, boolean isDelete) {
         BaseResponse<CertificateDto> response = new BaseResponse<>();

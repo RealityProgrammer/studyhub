@@ -25,7 +25,6 @@ public class UploadImageFile {
     @Autowired
     private Cloudinary cloudinary;
 
-    @Override
     public ImageDto uploadImage(MultipartFile file) throws IOException {
         assert file.getOriginalFilename() != null;
         String publicValue = generatePublicValue(file.getOriginalFilename());
@@ -45,7 +44,7 @@ public class UploadImageFile {
         imageDTO.setType(file.getContentType());
         return imageDTO;
     }
-    @Override
+
     public void deleteImage(String publicId) {
         try {
             Map<String, String> params = ObjectUtils.asMap("public_id", publicId);
@@ -54,6 +53,7 @@ public class UploadImageFile {
             throw new RuntimeException("Lỗi khi xóa hình ảnh từ Cloudinary", e);
         }
     }
+
     private File convert(MultipartFile file) throws IOException {
         assert file.getOriginalFilename() != null;
         File convFile = new File(StringUtils.join(generatePublicValue(file.getOriginalFilename()), getFileName(file.getOriginalFilename())[1]));

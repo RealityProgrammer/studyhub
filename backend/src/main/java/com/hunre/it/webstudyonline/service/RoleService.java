@@ -30,7 +30,6 @@ public class RoleService {
     @Autowired
     private RoleMapper roleMapper;
 
-    @Override
     public ResponsePage<List<RoleDto>> getAllRoles(Pageable pageable) {
         ResponsePage<List<RoleDto>> responsePage = new ResponsePage<>();
         Page<RoleEntity> roles = roleRepository.findAll(pageable);
@@ -43,7 +42,6 @@ public class RoleService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<RoleDto> addRole(RoleDto role) {
         BaseResponse<RoleDto> response = new BaseResponse<>();
         Optional<RoleEntity> existingRole = roleRepository.findByCode(role.getCode());
@@ -64,7 +62,6 @@ public class RoleService {
         return response;
     }
 
-    @Override
     public BaseResponse<RoleDto> updateRole(String id, RoleDto role) {
         BaseResponse<RoleDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -92,7 +89,6 @@ public class RoleService {
         return response;
     }
 
-    @Override
     public BaseResponse<RoleDto> deleteRole(String id) {
         BaseResponse<RoleDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -118,7 +114,6 @@ public class RoleService {
         return response;
     }
 
-    @Override
     public BaseResponse<RoleDto> getRoleById(String id) {
         BaseResponse<RoleDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);

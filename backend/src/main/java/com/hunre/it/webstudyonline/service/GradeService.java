@@ -46,8 +46,8 @@ public class GradeService {
     @Autowired
     private CourseDetailsMapper courseDetailsMapper;
     @Autowired
-    private ITimeTableService timeTableService;
-    @Override
+    private TimeTableService timeTableService;
+
     public ResponsePage<List<GradeDto>> getAllGrades(Pageable pageable) {
         ResponsePage<List<GradeDto>> responsePage = new ResponsePage<>();
         Page<GradeEntity> page = gradeRepository.getGrade(pageable);
@@ -60,7 +60,6 @@ public class GradeService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<GradeDto> getGradeById(String id) {
         BaseResponse<GradeDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -84,7 +83,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<GradeDto> addGrade(GradeDto gradeDto) throws ParseException {
         BaseResponse<GradeDto> response = new BaseResponse<>();
         GradeEntity gradeEntity = gradeMapper.toEntity(gradeDto);
@@ -111,7 +109,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<GradeDto> updateGrade(String id, GradeDto gradeDto) {
         BaseResponse<GradeDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -137,7 +134,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<GradeDto> deleteGrade(String id) {
         BaseResponse<GradeDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -162,7 +158,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<List<GradeDto>> getGradeByEmail() {
         BaseResponse<List<GradeDto>> response = new BaseResponse<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -175,7 +170,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<List<GradeDto>> findByCourse(String id) {
         BaseResponse<List<GradeDto>> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -193,7 +187,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<String> signInGrade(String id) {
         BaseResponse<String> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -221,7 +214,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<String> addStudentIntoGrade(String id, List<String> studentEmails) {
         BaseResponse<String> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -250,7 +242,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<String> deleteStudentOuttoGrade(String id, String studentEmail) {
         BaseResponse<String> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -277,7 +268,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public BaseResponse<GradeDto> findByCourseAndUser(String id) {
         BaseResponse<GradeDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -296,7 +286,6 @@ public class GradeService {
         return response;
     }
 
-    @Override
     public ResponsePage<List<GradeDto>> findByEmail(Pageable pageable) {
         ResponsePage<List<GradeDto>> responsePage = new ResponsePage<>();
         AuthDto authDto = jwtService.decodeToken();

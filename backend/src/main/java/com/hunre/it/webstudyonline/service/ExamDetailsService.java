@@ -29,7 +29,6 @@ public class ExamDetailsService {
     @Autowired
     private ExamRepository examRepository;
 
-    @Override
     public ResponsePage<List<ExamDetailsDto>> getAllExamDetails(String id, Pageable pageable) {
         ResponsePage<List<ExamDetailsDto>> responsePage = new ResponsePage<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -44,7 +43,6 @@ public class ExamDetailsService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<ExamDetailsDto> addExamDetails(ExamDetailsDto examDetailsDto) {
         BaseResponse<ExamDetailsDto> response = new BaseResponse<>();
         Optional<ExamEntity> optionalExam = examRepository.findById(examDetailsDto.getExamId());
@@ -63,7 +61,6 @@ public class ExamDetailsService {
         return response;
     }
 
-    @Override
     public BaseResponse<ExamDetailsDto> updateExamDetails(String id,ExamDetailsDto examDetailsDto) {
         BaseResponse<ExamDetailsDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -97,12 +94,10 @@ public class ExamDetailsService {
         return response;
     }
 
-    @Override
     public BaseResponse<ExamDetailsDto> deleteExamDetails(String id) {
         return handleExamDetails(id, true);
     }
 
-    @Override
     public BaseResponse<ExamDetailsDto> getExamDetails(String id) {
         return handleExamDetails(id, false);
     }

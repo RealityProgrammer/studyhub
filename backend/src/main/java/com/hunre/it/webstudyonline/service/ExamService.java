@@ -32,7 +32,7 @@ public class ExamService {
     private JwtService jwtService;
     @Autowired
     private BillRepository billRepository;
-    @Override
+
     public ResponsePage<List<ExamDto>> getAll(Pageable pageable) {
         ResponsePage<List<ExamDto>> responsePage = new ResponsePage<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -48,7 +48,6 @@ public class ExamService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<ExamDto> addExam(ExamDto examDto) {
         BaseResponse<ExamDto> response = new BaseResponse<>();
         ExamEntity examEntity = examMapper.toEntity(examDto);
@@ -61,7 +60,6 @@ public class ExamService {
         return response;
     }
 
-    @Override
     public BaseResponse<ExamDto> updateExam(String id, ExamDto examDto) {
         BaseResponse<ExamDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -87,17 +85,14 @@ public class ExamService {
         return response;
     }
 
-    @Override
     public BaseResponse<ExamDto> deleteExam(String id) {
         return handleExam(id,true);
     }
 
-    @Override
     public BaseResponse<ExamDto> getExamById(String id) {
         return handleExam(id,false);
     }
 
-    @Override
     public ResponsePage<List<ExamDto>> findByCodeAndName(String name, String code, Pageable pageable) {
         ResponsePage<List<ExamDto>> responsePage = new ResponsePage<>();
         Page<ExamEntity> page = exampRepository.getExamsByNameAndCode(name,code,pageable);
@@ -109,7 +104,7 @@ public class ExamService {
         responsePage.setContent(examDtos);
         return responsePage;
     }
-    @Override
+
     public BaseResponse<ExamDto> getExamByCode(String examCode) {
         BaseResponse<ExamDto> response = new BaseResponse<>();
         ExamEntity examEntity = exampRepository.findByCode(examCode);

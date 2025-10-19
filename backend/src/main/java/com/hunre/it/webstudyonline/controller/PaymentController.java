@@ -2,6 +2,7 @@ package com.hunre.it.webstudyonline.controller;
 
 import com.hunre.it.webstudyonline.model.request.MomoRequest;
 import com.hunre.it.webstudyonline.model.response.VNPayResponse;
+import com.hunre.it.webstudyonline.service.PaymentService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.Map;
 @RequestMapping("/api/payment")
 public class PaymentController {
     @Autowired
-    private IPaymentService paymentService;
+    private PaymentService paymentService;
     @GetMapping("/vn-pay")
     public VNPayResponse pay(HttpServletRequest request) {
         return paymentService.createVnPayPayment(request);

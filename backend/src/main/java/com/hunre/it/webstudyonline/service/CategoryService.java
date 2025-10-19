@@ -25,7 +25,7 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
     @Autowired
     private CategoryMapper categoryMapper;
-    @Override
+
     public ResponsePage<List<CategoryDto>> getAllCategories(Pageable pageable) {
         ResponsePage<List<CategoryDto>> responsePage = new ResponsePage<>();
         Page<CategoryEntity> page = categoryRepository.getAllCategory(pageable);
@@ -38,7 +38,6 @@ public class CategoryService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<CategoryDto> addCategory(CategoryDto categoryDto) {
         BaseResponse<CategoryDto> response = new BaseResponse<>();
         Optional<CategoryEntity> checkCode = categoryRepository.findByCode(categoryDto.getCode());
@@ -63,7 +62,6 @@ public class CategoryService {
         return response;
     }
 
-    @Override
     public BaseResponse<CategoryDto> updateCategory(String id, CategoryDto categoryDto) {
         BaseResponse<CategoryDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -109,7 +107,6 @@ public class CategoryService {
         return response;
     }
 
-    @Override
     public BaseResponse<CategoryDto> deleteCategory(String id) {
         BaseResponse<CategoryDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -134,7 +131,6 @@ public class CategoryService {
         return response;
     }
 
-    @Override
     public BaseResponse<CategoryDto> getCategoryById(String id) {
         BaseResponse<CategoryDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);

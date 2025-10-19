@@ -16,7 +16,6 @@ public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    @Override
     public void sendVerificationEmail(String to, String subject, String text) throws MessagingException {
         Logger logger = LoggerFactory.getLogger(EmailService.class);
 

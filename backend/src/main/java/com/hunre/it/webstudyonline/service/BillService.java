@@ -35,7 +35,6 @@ public class BillService {
     @Autowired
     private JwtService jwtService;
 
-    @Override
     public ResponsePage<List<BillDto>> getAll(Pageable pageable) {
         ResponsePage<List<BillDto>> responsePage = new ResponsePage<>();
         Page<BillEntity> page = billRepository.findAllByDeletedFalse(pageable);
@@ -48,7 +47,6 @@ public class BillService {
         return responsePage;
     }
 
-    @Override
     public ResponsePage<List<BillDto>> getBillByAttribute(String code, String accountName, Pageable pageable) {
         ResponsePage<List<BillDto>> responsePage = new ResponsePage<>();
         Page<BillEntity> page = billRepository.findBillByCodeAndAccountName(code, accountName, pageable);
@@ -61,7 +59,6 @@ public class BillService {
         return responsePage;
     }
 
-    @Override
     public ResponsePage<List<BillDto>> getBillByEmail(Pageable pageable) {
         ResponsePage<List<BillDto>> responsePage = new ResponsePage<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -76,7 +73,6 @@ public class BillService {
         return responsePage;
     }
 
-    @Override
     public List<BillDto> getBillBetweenCreatedDate(ZonedDateTime from, ZonedDateTime to) {
         List<BillEntity> entities = billRepository.findAllByCreatedDateBetween(from, to);
         List<BillDto> billDtos = entities.stream().map(billMapper::toDto).toList();
@@ -84,7 +80,6 @@ public class BillService {
         return billDtos;
     }
 
-    @Override
     public BaseResponse<BillDto> createBill(BillDto billDto) {
         BaseResponse<BillDto> response = new BaseResponse<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -99,7 +94,6 @@ public class BillService {
         return response;
     }
 
-    @Override
     public BaseResponse<BillDto> getById(String id) {
         BaseResponse<BillDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -123,7 +117,6 @@ public class BillService {
         return response;
     }
 
-    @Override
     public BaseResponse<BillDto> deleteById(String id) {
         BaseResponse<BillDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);

@@ -33,7 +33,7 @@ public class CourseDetailsService {
     private UploadImageFile uploadImageFile;
     @Autowired
     private ImageRepository imageRepository;
-    @Override
+
     public ResponsePage<List<CourseDetailsDto>> getAll(String courseIds, Pageable pageable) {
         ResponsePage<List<CourseDetailsDto>> responsePage = new ResponsePage<>();
         Utils<Long> utils = LongUtils.strToLong(courseIds);
@@ -51,7 +51,7 @@ public class CourseDetailsService {
         responsePage.setContent(dtos);
         return responsePage;
     }
-    @Override
+
     public BaseResponse<CourseDetailsDto> addCourseDetails(CourseDetailsDto courseDetailsDto) {
         BaseResponse<CourseDetailsDto> response = new BaseResponse<>();
         Optional<CourseEntity> courseEntity = courseRepository.findById(courseDetailsDto.getCourseId());
@@ -72,7 +72,6 @@ public class CourseDetailsService {
         return response;
     }
 
-    @Override
     public BaseResponse<CourseDetailsDto> updateCourseDetails(String id, CourseDetailsDto courseDetailsDto) {
         BaseResponse<CourseDetailsDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -107,7 +106,6 @@ public class CourseDetailsService {
         return response;
     }
 
-    @Override
     public BaseResponse<CourseDetailsDto> deleteCourseDetails(String id) {
         BaseResponse<CourseDetailsDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -137,7 +135,6 @@ public class CourseDetailsService {
 
     }
 
-    @Override
     public BaseResponse<CourseDetailsDto> getCourseDetailsById(String id) {
         BaseResponse<CourseDetailsDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);

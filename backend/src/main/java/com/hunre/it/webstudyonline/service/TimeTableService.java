@@ -28,7 +28,6 @@ public class TimeTableService {
     @Autowired
     private GradeRepository gradeRepository;
 
-    @Override
     public ResponsePage<List<TimeTableDto>> getAllTimeTables(Pageable pageable) {
         ResponsePage<List<TimeTableDto>> responsePage = new ResponsePage<>();
         Page<TimetableEntity> page = timeTableRepository.getAll(pageable);
@@ -41,7 +40,6 @@ public class TimeTableService {
         return responsePage;
     }
 
-    @Override
     public ResponsePage<List<TimeTableDto>> getTimeTableByGradeId(Long gradeId, Pageable pageable) {
         ResponsePage<List<TimeTableDto>> responsePage = new ResponsePage<>();
         Page<TimetableEntity> page = timeTableRepository.getByGradeId(gradeId, pageable);
@@ -54,7 +52,6 @@ public class TimeTableService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<List<TimeTableDto>> addTimeTable(AddTimetableRequest addTimetableRequest) throws ParseException {
         BaseResponse<List<TimeTableDto>> response = new BaseResponse<>();
         List<TimetableEntity> timetableEntities = new ArrayList<>();
@@ -113,8 +110,6 @@ public class TimeTableService {
         return calendar.getTime();
     }
 
-
-    @Override
     public BaseResponse<TimeTableDto> updateTimeTable(Long id, TimeTableDto timeTableDto) {
         BaseResponse<TimeTableDto> response = new BaseResponse<>();
         Optional<TimetableEntity> optional = timeTableRepository.findById(id);
@@ -143,7 +138,6 @@ public class TimeTableService {
         return response;
     }
 
-    @Override
     public BaseResponse<TimeTableDto> deleteTimeTable(Long id) {
         BaseResponse<TimeTableDto> response = new BaseResponse<>();
         Optional<TimetableEntity> optional = timeTableRepository.findById(id);
@@ -161,7 +155,6 @@ public class TimeTableService {
         return response;
     }
 
-    @Override
     public BaseResponse<TimeTableDto> getTimeTableById(Long id) {
         BaseResponse<TimeTableDto> response = new BaseResponse<>();
         Optional<TimetableEntity> optional = timeTableRepository.findById(id);

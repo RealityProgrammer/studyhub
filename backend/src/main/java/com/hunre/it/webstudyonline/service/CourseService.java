@@ -53,7 +53,6 @@ public class CourseService {
     @Autowired
     private JwtService jwtService;
 
-    @Override
     public ResponsePage<List<CourseDto>> getCourses(Pageable pageable) {
         ResponsePage<List<CourseDto>> responsePage = new ResponsePage<>();
         Page<CourseEntity> page = courseRepository.getAll(pageable);
@@ -75,7 +74,6 @@ public class CourseService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<CourseDto> addCourse(CourseDto courseDto, MultipartFile file) {
         BaseResponse<CourseDto> response = new BaseResponse<>();
         try {
@@ -111,7 +109,6 @@ public class CourseService {
         return response;
     }
 
-    @Override
     public BaseResponse<CourseDto> updateCourse(String id, CourseDto courseDto,MultipartFile file) {
         try {
             BaseResponse<CourseDto> response = new BaseResponse<>();
@@ -174,7 +171,6 @@ public class CourseService {
         }
     }
 
-    @Override
     public BaseResponse<CourseDto> deleteCourse(Long id) {
         BaseResponse<CourseDto> response = new BaseResponse<>();
         Optional<CourseEntity> courseEntity = courseRepository.findById(id);
@@ -205,7 +201,6 @@ public class CourseService {
         return response;
     }
 
-    @Override
     public BaseResponse<CourseDto> getCourseById(Long id) {
         BaseResponse<CourseDto> response = new BaseResponse<>();
         Optional<CourseEntity> courseEntity = courseRepository.findById(id);
@@ -229,7 +224,6 @@ public class CourseService {
         return response;
     }
 
-    @Override
     public ResponsePage<List<CourseDto>> getCourseByCondition(Map<String, String> params, Pageable pageable) {
         ResponsePage<List<CourseDto>> responsePage = new ResponsePage<>();
         String code = params.get("code");
@@ -269,7 +263,6 @@ public class CourseService {
         return responsePage;
     }
 
-    @Override
     public ResponsePage<List<CourseDto>> getCourseByCreatedBy(Pageable pageable) {
         ResponsePage<List<CourseDto>> responsePage = new ResponsePage<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -291,7 +284,6 @@ public class CourseService {
         return responsePage;
     }
 
-    @Override
     public ResponsePage<List<CourseDto>> getCourseBestSeller(Pageable pageable) {
         ResponsePage<List<CourseDto>> responsePage = new ResponsePage<>();
 
@@ -312,7 +304,6 @@ public class CourseService {
         return responsePage;
     }
 
-    @Override
     public ResponsePage<List<CourseDto>> getCourseByEmailTeacher(Pageable pageable, String email) {
         ResponsePage<List<CourseDto>> responsePage = new ResponsePage<>();
         Page<CourseEntity> page = courseRepository.getCourseByCreatedByEmail(pageable,email);

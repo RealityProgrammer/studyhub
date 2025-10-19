@@ -43,7 +43,6 @@ public class InforTeacherService {
     @Autowired
     private AccountRepository accountRepository;
 
-    @Override
     public ResponsePage<List<InforTeacherDto>> getAll(Pageable pageable) {
         ResponsePage<List<InforTeacherDto>> responsePage = new ResponsePage<>();
         Page<InforTeacherEntity> page = inforTeacherRepository.findAllInforTeachers(pageable);
@@ -56,7 +55,6 @@ public class InforTeacherService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<InforTeacherDto> getInforTeacherById(String id) {
         BaseResponse<InforTeacherDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -81,7 +79,6 @@ public class InforTeacherService {
         return response;
     }
 
-    @Override
     public BaseResponse<InforTeacherDto> addInforTeacher(AddInforTeacherForm addInforTeacherForm) {
         BaseResponse<InforTeacherDto> response = new BaseResponse<>();
         InforTeacherEntity inforTeacherEntity = inforTeacherMapper.toInforTeacherEntity(addInforTeacherForm);
@@ -93,7 +90,6 @@ public class InforTeacherService {
         return response;
     }
 
-    @Override
     public BaseResponse<InforTeacherDto> updateInforTeacher(InforTeacherDto inforTeacherDto, String id, MultipartFile file) {
         BaseResponse<InforTeacherDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -155,8 +151,6 @@ public class InforTeacherService {
         return response;
     }
 
-
-    @Override
     public BaseResponse<InforTeacherDto> deleteInforTeacher(String id) {
         BaseResponse<InforTeacherDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);

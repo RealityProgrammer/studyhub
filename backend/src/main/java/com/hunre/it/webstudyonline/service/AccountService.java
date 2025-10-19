@@ -54,7 +54,6 @@ public class AccountService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
     public ResponsePage<List<AccountDto>> getAllAccounts(Pageable pageable) {
         ResponsePage<List<AccountDto>> responsePage = new ResponsePage<>();
         Page<AccountEntity> page = accountRepository.findByDeletedFalseWithRoles(pageable);
@@ -76,8 +75,6 @@ public class AccountService {
         return responsePage;
     }
 
-
-    @Override
     public ResponsePage<List<AccountDto>> findUserByCondition(Pageable pageable, String fullname, String email) {
         ResponsePage<List<AccountDto>> responsePage = new ResponsePage<>();
         Page<AccountEntity> page = accountRepository.findByCondition(fullname, email, pageable);
@@ -90,7 +87,6 @@ public class AccountService {
         return responsePage;
     }
 
-    @Override
     public ResponsePage<List<AccountDto>> findUserByRole(Pageable pageable, String fullname, String email, String roleCode) {
         ResponsePage<List<AccountDto>> responsePage = new ResponsePage<>();
         Page<AccountEntity> page = accountRepository.findByRoleCode(fullname, roleCode, email, pageable);
@@ -103,7 +99,6 @@ public class AccountService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<AccountDto> update(String id, UpdateAccountForm updateAccountForm, MultipartFile file) {
         BaseResponse<AccountDto> response = new BaseResponse<>();
         try {
@@ -161,7 +156,6 @@ public class AccountService {
         return response;
     }
 
-    @Override
     public BaseResponse<AccountDto> delete(String id) {
         BaseResponse<AccountDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -186,14 +180,12 @@ public class AccountService {
         return response;
     }
 
-    @Override
     public AccountDto findById(Long id) {
         AccountEntity accountEntity = accountRepository.findById(id).orElseThrow(() -> new RuntimeException("Account not found"));
         AccountDto accountDto = accountMapper.toDto(accountEntity);
         return accountDto;
     }
 
-    @Override
     public BaseResponse<AccountDto> getAccount() {
         BaseResponse<AccountDto> response = new BaseResponse<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -221,7 +213,6 @@ public class AccountService {
         return response;
     }
 
-    @Override
     public BaseResponse<?> changePassword(String id, ChagePasswordRequest changePasswordRequest) {
         BaseResponse<?> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -263,7 +254,6 @@ public class AccountService {
         return response;
     }
 
-    @Override
     public ResponsePage<List<AccountDto>> findAccountByAttribute(String fullname, String email, String role, Pageable pageable) {
         ResponsePage<List<AccountDto>> responsePage = new ResponsePage<>();
         Page<AccountEntity> page = accountRepository.findAccountByAttributes(fullname, email, role, pageable);
@@ -275,5 +265,4 @@ public class AccountService {
         responsePage.setContent(accountDtos);
         return responsePage;
     }
-
 }

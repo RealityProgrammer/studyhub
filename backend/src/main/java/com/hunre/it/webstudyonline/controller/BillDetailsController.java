@@ -4,6 +4,7 @@ import com.hunre.it.webstudyonline.model.dto.BillDetailsDto;
 import com.hunre.it.webstudyonline.model.dto.CourseDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
+import com.hunre.it.webstudyonline.service.BillDetailsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +18,7 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class BillDetailsController {
     @Autowired
-    private IBillDetailsService billDetailsService;
+    private BillDetailsService billDetailsService;
 
     @GetMapping("/list/{billId}")
     public ResponseEntity<ResponsePage<List<BillDetailsDto>>> getAllBillDetails(@PathVariable String billId, Pageable pageable) {

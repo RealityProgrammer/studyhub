@@ -32,7 +32,7 @@ public class PointService {
     private JwtService jwtService;
     @Autowired
     private ExamRepository examRepository;
-    @Override
+
     public ResponsePage<List<PointDto>> getAllPoints(Long examId,Pageable pageable) {
         ResponsePage<List<PointDto>> responsePage = new ResponsePage<>();
         Page<PointEntity> page = pointRepository.findAllByDeletedFalse(examId,pageable);
@@ -45,7 +45,6 @@ public class PointService {
         return responsePage;
     }
 
-    @Override
     public BaseResponse<PointDto> addPoint(PointDto pointDto) {
         BaseResponse<PointDto> response = new BaseResponse<>();
         AuthDto authDto = jwtService.decodeToken();
@@ -60,7 +59,6 @@ public class PointService {
     }
 
 
-    @Override
     public BaseResponse<PointDto> updatePoint(String id, PointDto pointDto) {
         BaseResponse<PointDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -94,15 +92,15 @@ public class PointService {
         response.setMessage(Constant.HTTP_MESSAGE.SUCCESS);
         return response;
     }
-    @Override
+
     public BaseResponse<PointDto> deletePoint(String id) {
         return handle(id,true);
     }
 
-    @Override
     public BaseResponse<PointDto> getPoint(String id) {
         return handle(id,false);
     }
+
     public BaseResponse<PointDto> handle(String id,boolean isDelete) {
         BaseResponse<PointDto> response = new BaseResponse<>();
         Utils<Long> utils = LongUtils.strToLong(id);
@@ -130,7 +128,6 @@ public class PointService {
         return response;
     }
 
-    @Override
     public ResponsePage<List<PointDto>> findByUser(Pageable pageable) {
         AuthDto authDto =jwtService.decodeToken();
         ResponsePage<List<PointDto>> responsePage = new ResponsePage<>();

@@ -3,6 +3,7 @@ package com.hunre.it.webstudyonline.controller;
 import com.hunre.it.webstudyonline.model.dto.PointDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
+import com.hunre.it.webstudyonline.service.PointService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class PointController {
     @Autowired
-    private IPointService pointService;
+    private PointService pointService;
     @GetMapping("/list/{examId}")
     public ResponseEntity<ResponsePage<List<PointDto>>> getAll(@PathVariable Long examId,Pageable pageable) {
         ResponsePage<List<PointDto>> responsePage = pointService.getAllPoints(examId,pageable);

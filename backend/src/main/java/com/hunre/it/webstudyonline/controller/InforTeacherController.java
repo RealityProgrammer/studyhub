@@ -4,6 +4,7 @@ import com.hunre.it.webstudyonline.model.dto.InforTeacherDto;
 import com.hunre.it.webstudyonline.model.request.AddInforTeacherForm;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
+import com.hunre.it.webstudyonline.service.InforTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class InforTeacherController {
     @Autowired
-    private IInforTeacherService inforTeacherService;
+    private InforTeacherService inforTeacherService;
 
     @GetMapping("/list")
     public ResponseEntity<ResponsePage<List<InforTeacherDto>>> getAll(Pageable pageable) {

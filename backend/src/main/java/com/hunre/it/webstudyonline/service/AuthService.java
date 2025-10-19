@@ -34,7 +34,7 @@ public class AuthService {
     @Autowired
     private AuthMapper authMapper;
     @Autowired
-    private IEmailService emailService;
+    private EmailService emailService;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -44,7 +44,6 @@ public class AuthService {
     @Qualifier("hazelcastServerInstance")
     private HazelcastInstance hazelcastInstance;
 
-    @Override
     public BaseResponse<SignUpUserDto> signup(SignUpUserDto signUpUserDto) {
         BaseResponse<SignUpUserDto> response  = new BaseResponse<>();
         String verificationCode = generateVerificationCode();
@@ -64,7 +63,6 @@ public class AuthService {
         return response;
     }
 
-    @Override
     public AccountEntity authenticate(LoginUserDto loginUserDto) {
         AccountEntity user = accountRepository.findByEmail(loginUserDto.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -80,7 +78,6 @@ public class AuthService {
         return user;
     }
 
-    @Override
     public void verifyUser(VerifyUserDto verifyUserDto) {
         IMap<String, VerifyingUserDto> otpMap = hazelcastInstance.getMap("otpCodes");
 
@@ -112,7 +109,6 @@ public class AuthService {
         accountRepository.save(account);
     }
 
-    @Override
     public void resendVerificationCode(String email) {
         Optional<AccountEntity> optionalUser = accountRepository.findByEmail(email);
         if (optionalUser.isPresent()){
@@ -137,7 +133,6 @@ public class AuthService {
         }
     }
 
-    @Override
     public void sendVerificationEmail(String email, String verificationCode) {
         String subject = "Account Verification";
         String htmlMessage = "<html>"
