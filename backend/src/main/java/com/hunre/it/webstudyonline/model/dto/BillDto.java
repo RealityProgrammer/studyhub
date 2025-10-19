@@ -1,22 +1,22 @@
 package com.hunre.it.webstudyonline.model.dto;
 
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 public class BillDto {
     private Long id;
     private String code;
     private Long accountId;
     private String accountName;
-    private ZonedDateTime createdDate;
+    private LocalDateTime createdDate;
 
-    public ZonedDateTime getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(ZonedDateTime createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 

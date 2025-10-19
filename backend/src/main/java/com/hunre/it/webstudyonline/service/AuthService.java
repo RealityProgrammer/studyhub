@@ -20,7 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -92,7 +92,7 @@ public class AuthService {
         SignUpUserDto signedUpUser = verifying.getUserDto();
 
         AccountEntity account = new AccountEntity(
-            "UID"+ ZonedDateTime.now().getYear() + 00001,
+            "UID"+ LocalDateTime.now().getYear() + 00001,
             signedUpUser.getFullname(),
             passwordEncoder.encode(signedUpUser.getPassword()),
             signedUpUser.getEmail(),

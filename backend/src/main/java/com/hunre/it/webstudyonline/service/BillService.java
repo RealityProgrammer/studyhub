@@ -20,7 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,13 +71,6 @@ public class BillService {
         responsePage.setTotalPages(page.getTotalPages());
         responsePage.setContent(billDtos);
         return responsePage;
-    }
-
-    public List<BillDto> getBillBetweenCreatedDate(ZonedDateTime from, ZonedDateTime to) {
-        List<BillEntity> entities = billRepository.findAllByCreatedDateBetween(from, to);
-        List<BillDto> billDtos = entities.stream().map(billMapper::toDto).toList();
-
-        return billDtos;
     }
 
     public BaseResponse<BillDto> createBill(BillDto billDto) {

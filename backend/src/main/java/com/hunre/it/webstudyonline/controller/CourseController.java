@@ -29,8 +29,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public ResponseEntity<BaseResponse<CourseDto>> create (@ModelAttribute CourseDto courseDto,
-                                                           @RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<BaseResponse<CourseDto>> create (@ModelAttribute CourseDto courseDto, @RequestParam("file") MultipartFile file) throws IOException {
         BaseResponse<CourseDto> response = courseService.addCourse(courseDto, file);
         return ResponseEntity.ok(response);
     }

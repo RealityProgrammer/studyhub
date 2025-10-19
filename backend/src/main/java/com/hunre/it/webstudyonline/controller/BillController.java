@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -24,11 +24,6 @@ public class BillController {
     public ResponseEntity<ResponsePage<List<BillDto>>> getAll(Pageable pageable) {
         ResponsePage<List<BillDto>> responsePage = billService.getAll(pageable);
         return ResponseEntity.ok(responsePage);
-    }
-
-    @GetMapping("/findBillBetweenDates")
-    public ResponseEntity<List<BillDto>> getAllBetween(@RequestParam ZonedDateTime from, @RequestParam ZonedDateTime to) {
-        return ResponseEntity.ok(billService.getBillBetweenCreatedDate(from, to));
     }
 
     @GetMapping("/findBillByAttribute")

@@ -10,8 +10,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.ZonedDateTime;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 @Data
 @Getter
@@ -25,7 +25,7 @@ public class AbstractEntity {
 
     @CreatedDate
     @Column(name = "created_date")
-    private ZonedDateTime createdDate;
+    private LocalDateTime createdDate;
 
     @Column(name = "created_by")
     @CreatedBy
@@ -33,7 +33,7 @@ public class AbstractEntity {
 
     @Column(name = "modified_date")
     @LastModifiedDate
-    private ZonedDateTime modifiedDate;
+    private LocalDateTime modifiedDate;
 
     @Column(name = "modified_by")
     @LastModifiedBy
@@ -50,11 +50,11 @@ public class AbstractEntity {
         this.id = id;
     }
 
-    public ZonedDateTime getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(ZonedDateTime createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -66,11 +66,11 @@ public class AbstractEntity {
         this.createdBy = createdBy;
     }
 
-    public ZonedDateTime getModifiedDate() {
+    public LocalDateTime getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(ZonedDateTime modifiedDate) {
+    public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 

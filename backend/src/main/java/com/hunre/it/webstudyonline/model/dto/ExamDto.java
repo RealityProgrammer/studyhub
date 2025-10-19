@@ -3,7 +3,7 @@ package com.hunre.it.webstudyonline.model.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 public class ExamDto {
     private Long id;
@@ -14,7 +14,7 @@ public class ExamDto {
     private Integer duration;
     @NotNull(message = "Number question cannot be empty")
     private Integer number_question;
-    private ZonedDateTime created_at;
+    private LocalDateTime created_at;
     private Boolean isFree;
 
     public Boolean getFree() {
@@ -26,11 +26,11 @@ public class ExamDto {
     }
 
 
-    public ZonedDateTime getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(ZonedDateTime created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 

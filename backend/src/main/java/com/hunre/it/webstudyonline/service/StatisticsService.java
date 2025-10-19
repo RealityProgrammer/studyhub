@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,10 +24,8 @@ public class StatisticsService {
     private BillDetailsRepository billDetailsRepository;
 
     public BigDecimal[] getMonthlyRevenue(int year) {
-        ZoneId zoneId = ZoneId.of("Asia/Bangkok");
-
-        ZonedDateTime startOfYear = ZonedDateTime.of(LocalDateTime.of(year, 1, 1, 0, 0), zoneId);
-        ZonedDateTime endOfYear = ZonedDateTime.of(LocalDateTime.of(year, 12, 31, 23, 59, 59, 999999999), zoneId);
+        LocalDateTime startOfYear = LocalDateTime.of(year, 1, 1, 0, 0);
+        LocalDateTime endOfYear = LocalDateTime.of(year, 12, 31, 23, 59, 59, 999999999);
 
         List<BillEntity> bills = billRepository.findAllByCreatedDateBetween(startOfYear, endOfYear);
 
