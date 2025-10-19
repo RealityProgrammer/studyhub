@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.AccountEntity;
 import com.hunre.it.webstudyonline.entity.ImagesEntity;
@@ -17,8 +17,6 @@ import com.hunre.it.webstudyonline.repository.AccountRepository;
 import com.hunre.it.webstudyonline.repository.ImageRepository;
 import com.hunre.it.webstudyonline.repository.RoleRepository;
 import com.hunre.it.webstudyonline.security.service.JwtService;
-import com.hunre.it.webstudyonline.service.IAccountService;
-import com.hunre.it.webstudyonline.service.UploadImageFile;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -27,20 +25,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.management.relation.Role;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class IAccountServiceImpl implements IAccountService {
+public class AccountService {
     @Autowired
     private AccountMapper accountMapper;
     @Autowired
@@ -48,7 +42,7 @@ public class IAccountServiceImpl implements IAccountService {
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
-    private IRoleServiceImpl roleServiceImpl;
+    private RoleService roleServiceImpl;
     @Autowired
     private RoleRepository roleRepository;
     @Autowired

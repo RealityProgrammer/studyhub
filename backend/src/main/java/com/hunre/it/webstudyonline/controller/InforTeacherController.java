@@ -4,7 +4,6 @@ import com.hunre.it.webstudyonline.model.dto.InforTeacherDto;
 import com.hunre.it.webstudyonline.model.request.AddInforTeacherForm;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
-import com.hunre.it.webstudyonline.service.IInforTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

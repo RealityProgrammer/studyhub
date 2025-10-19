@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.GradeEntity;
 import com.hunre.it.webstudyonline.entity.TimetableEntity;
@@ -9,7 +9,6 @@ import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.GradeRepository;
 import com.hunre.it.webstudyonline.repository.TimeTableRepository;
-import com.hunre.it.webstudyonline.service.ITimeTableService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +20,7 @@ import java.text.ParseException;
 import java.util.*;
 
 @Service
-public class ITimeTableServiceImpl implements ITimeTableService {
+public class TimeTableService {
     @Autowired
     private TimeTableRepository timeTableRepository;
     @Autowired

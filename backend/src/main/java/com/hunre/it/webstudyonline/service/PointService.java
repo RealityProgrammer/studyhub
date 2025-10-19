@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.ExamEntity;
 import com.hunre.it.webstudyonline.entity.PointEntity;
@@ -10,7 +10,6 @@ import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.ExamRepository;
 import com.hunre.it.webstudyonline.repository.PointRepository;
 import com.hunre.it.webstudyonline.security.service.JwtService;
-import com.hunre.it.webstudyonline.service.IPointService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -24,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class IPointServiceImpl implements IPointService {
+public class PointService {
     @Autowired
     private PointRepository pointRepository;
     @Autowired

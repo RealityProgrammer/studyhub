@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.CertificateEntity;
 import com.hunre.it.webstudyonline.entity.InforTeacherEntity;
@@ -10,7 +10,6 @@ import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.CertificateRepository;
 import com.hunre.it.webstudyonline.repository.InforTeacherRepository;
 import com.hunre.it.webstudyonline.security.service.JwtService;
-import com.hunre.it.webstudyonline.service.ICertificateService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -26,7 +25,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class ICertificateServiceImpl implements ICertificateService {
+public class CertificateService {
     @Autowired
     private CertificateRepository certificateRepository;
     @Autowired

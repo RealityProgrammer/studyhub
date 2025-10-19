@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.AccountEntity;
 import com.hunre.it.webstudyonline.entity.ImagesEntity;
@@ -13,8 +13,6 @@ import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.AccountRepository;
 import com.hunre.it.webstudyonline.repository.ImageRepository;
 import com.hunre.it.webstudyonline.repository.InforTeacherRepository;
-import com.hunre.it.webstudyonline.service.IInforTeacherService;
-import com.hunre.it.webstudyonline.service.UploadImageFile;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -32,7 +30,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class IInforTeacherServiceImpl implements IInforTeacherService {
+public class InforTeacherService {
 
     @Autowired
     private InforTeacherMapper inforTeacherMapper;

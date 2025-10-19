@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.ExamDetailsEntity;
 import com.hunre.it.webstudyonline.entity.ExamEntity;
@@ -8,7 +8,6 @@ import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.ExamDetailsRepository;
 import com.hunre.it.webstudyonline.repository.ExamRepository;
-import com.hunre.it.webstudyonline.service.IExamDetailsService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -22,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class IExamDetailsServiceImpl implements IExamDetailsService {
+public class ExamDetailsService {
     @Autowired
     private ExamDetailsRepository examDetailsRepository;
     @Autowired

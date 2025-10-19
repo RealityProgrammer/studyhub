@@ -3,7 +3,6 @@ package com.hunre.it.webstudyonline.controller;
 import com.hunre.it.webstudyonline.model.dto.ExamDetailsDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
-import com.hunre.it.webstudyonline.service.IExamDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

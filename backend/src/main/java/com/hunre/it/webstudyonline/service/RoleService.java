@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.RoleEntity;
 import com.hunre.it.webstudyonline.mapper.RoleMapper;
@@ -6,7 +6,6 @@ import com.hunre.it.webstudyonline.model.dto.RoleDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.RoleRepository;
-import com.hunre.it.webstudyonline.service.IRoleService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -24,7 +23,7 @@ import java.util.Set;
 
 @Service
 @Transactional
-public class IRoleServiceImpl implements IRoleService {
+public class RoleService {
 
     @Autowired
     private RoleRepository roleRepository;

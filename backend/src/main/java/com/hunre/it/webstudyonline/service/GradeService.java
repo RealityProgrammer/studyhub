@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.AccountEntity;
 import com.hunre.it.webstudyonline.entity.CourseDetailsEntity;
@@ -15,8 +15,6 @@ import com.hunre.it.webstudyonline.repository.AccountRepository;
 import com.hunre.it.webstudyonline.repository.CourseDetailsRepository;
 import com.hunre.it.webstudyonline.repository.GradeRepository;
 import com.hunre.it.webstudyonline.security.service.JwtService;
-import com.hunre.it.webstudyonline.service.IGradeService;
-import com.hunre.it.webstudyonline.service.ITimeTableService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.GenerateCode;
 import com.hunre.it.webstudyonline.utils.LongUtils;
@@ -34,7 +32,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class IGradeServiceImpl implements IGradeService {
+public class GradeService {
     @Autowired
     private GradeRepository gradeRepository;
     @Autowired

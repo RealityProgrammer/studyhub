@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.CategoryEntity;
 import com.hunre.it.webstudyonline.entity.CourseDetailsEntity;
@@ -8,7 +8,6 @@ import com.hunre.it.webstudyonline.mapper.CourseMapper;
 import com.hunre.it.webstudyonline.mapper.ImageMapper;
 import com.hunre.it.webstudyonline.model.dto.CourseDto;
 import com.hunre.it.webstudyonline.model.dto.ImageDto;
-import com.hunre.it.webstudyonline.model.dto.RoleDto;
 import com.hunre.it.webstudyonline.model.dto.auth.AuthDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
@@ -17,8 +16,6 @@ import com.hunre.it.webstudyonline.repository.CourseDetailsRepository;
 import com.hunre.it.webstudyonline.repository.CourseRepository;
 import com.hunre.it.webstudyonline.repository.ImageRepository;
 import com.hunre.it.webstudyonline.security.service.JwtService;
-import com.hunre.it.webstudyonline.service.ICourseService;
-import com.hunre.it.webstudyonline.service.UploadImageFile;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.GenerateCode;
 import com.hunre.it.webstudyonline.utils.LongUtils;
@@ -31,16 +28,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 @Transactional
-public class ICourseServiceImpl implements ICourseService {
+public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
     @Autowired

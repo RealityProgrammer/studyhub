@@ -1,10 +1,9 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.config.MomoConfig;
 import com.hunre.it.webstudyonline.config.VNPAYConfig;
 import com.hunre.it.webstudyonline.config.ZaloPayConfig;
 import com.hunre.it.webstudyonline.model.response.VNPayResponse;
-import com.hunre.it.webstudyonline.service.IPaymentService;
 import com.hunre.it.webstudyonline.utils.VNPayUtil;
 import com.hunre.it.webstudyonline.utils.crypto.HMACUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class IPaymentServiceImpl implements IPaymentService {
+public class PaymentService {
     @Autowired
     private VNPAYConfig vnPayConfig;
     @Autowired

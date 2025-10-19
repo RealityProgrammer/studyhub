@@ -1,17 +1,14 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.CourseDetailsEntity;
 import com.hunre.it.webstudyonline.entity.CourseEntity;
 import com.hunre.it.webstudyonline.mapper.CourseDetailsMapper;
 import com.hunre.it.webstudyonline.model.dto.CourseDetailsDto;
-import com.hunre.it.webstudyonline.model.dto.ImageDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.CourseDetailsRepository;
 import com.hunre.it.webstudyonline.repository.CourseRepository;
 import com.hunre.it.webstudyonline.repository.ImageRepository;
-import com.hunre.it.webstudyonline.service.ICourseDetailsService;
-import com.hunre.it.webstudyonline.service.UploadImageFile;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -20,13 +17,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ICourseDetailsServiceImpl implements ICourseDetailsService {
+public class CourseDetailsService {
     @Autowired
     private CourseDetailsRepository courseDetailsRepository;
     @Autowired

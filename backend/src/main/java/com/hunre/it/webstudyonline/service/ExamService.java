@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.ExamEntity;
 import com.hunre.it.webstudyonline.mapper.ExamMapper;
@@ -9,7 +9,6 @@ import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.BillRepository;
 import com.hunre.it.webstudyonline.repository.ExamRepository;
 import com.hunre.it.webstudyonline.security.service.JwtService;
-import com.hunre.it.webstudyonline.service.IExamService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.GenerateCode;
 import com.hunre.it.webstudyonline.utils.LongUtils;
@@ -24,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class IExamServiceImpl implements IExamService {
+public class ExamService {
     @Autowired
     private ExamRepository exampRepository;
     @Autowired

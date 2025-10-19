@@ -1,6 +1,5 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
-import com.hunre.it.webstudyonline.entity.AccountEntity;
 import com.hunre.it.webstudyonline.entity.CartEntity;
 import com.hunre.it.webstudyonline.mapper.CartMapper;
 import com.hunre.it.webstudyonline.model.dto.CartDto;
@@ -8,10 +7,8 @@ import com.hunre.it.webstudyonline.model.dto.auth.AuthDto;
 import com.hunre.it.webstudyonline.model.request.AddCartForm;
 import com.hunre.it.webstudyonline.model.request.UpdateCartForm;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
-import com.hunre.it.webstudyonline.repository.AccountRepository;
 import com.hunre.it.webstudyonline.repository.CartRepository;
 import com.hunre.it.webstudyonline.security.service.JwtService;
-import com.hunre.it.webstudyonline.service.ICartService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -27,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class ICartServiceImpl implements ICartService {
+public class CartService {
     @Autowired
     private CartMapper cartMapper;
     @Autowired

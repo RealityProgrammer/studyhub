@@ -1,7 +1,6 @@
 package com.hunre.it.webstudyonline.controller;
 
 import com.hunre.it.webstudyonline.model.dto.ImageDto;
-import com.hunre.it.webstudyonline.service.UploadImageFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

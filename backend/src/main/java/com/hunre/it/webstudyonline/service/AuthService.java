@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 
 import com.hazelcast.core.HazelcastInstance;
@@ -10,11 +10,8 @@ import com.hunre.it.webstudyonline.model.dto.auth.*;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.repository.AccountRepository;
 import com.hunre.it.webstudyonline.repository.RoleRepository;
-import com.hunre.it.webstudyonline.service.IAuthService;
-import com.hunre.it.webstudyonline.service.IEmailService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import jakarta.mail.MessagingException;
-import kotlin.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -29,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
-public class IAuthServiceImpl implements IAuthService {
+public class AuthService {
     @Autowired
     private AccountRepository accountRepository;
     @Autowired

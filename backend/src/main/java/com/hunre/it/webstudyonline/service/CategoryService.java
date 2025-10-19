@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.CategoryEntity;
 import com.hunre.it.webstudyonline.mapper.CategoryMapper;
@@ -6,7 +6,6 @@ import com.hunre.it.webstudyonline.model.dto.CategoryDto;
 import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.CategoryRepository;
-import com.hunre.it.webstudyonline.service.ICategoryService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.GenerateCode;
 import com.hunre.it.webstudyonline.utils.LongUtils;
@@ -21,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ICategoryServiceImpl implements ICategoryService {
+public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired

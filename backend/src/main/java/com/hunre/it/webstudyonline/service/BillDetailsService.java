@@ -1,4 +1,4 @@
-package com.hunre.it.webstudyonline.service.impl;
+package com.hunre.it.webstudyonline.service;
 
 import com.hunre.it.webstudyonline.entity.AccountEntity;
 import com.hunre.it.webstudyonline.entity.BillDetailsEntity;
@@ -13,7 +13,6 @@ import com.hunre.it.webstudyonline.model.response.BaseResponse;
 import com.hunre.it.webstudyonline.model.response.ResponsePage;
 import com.hunre.it.webstudyonline.repository.*;
 import com.hunre.it.webstudyonline.security.service.JwtService;
-import com.hunre.it.webstudyonline.service.IBillDetailsService;
 import com.hunre.it.webstudyonline.utils.Constant;
 import com.hunre.it.webstudyonline.utils.LongUtils;
 import com.hunre.it.webstudyonline.utils.Utils;
@@ -28,7 +27,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class IBillDetailsServiceImpl implements IBillDetailsService {
+public class BillDetailsService {
     @Autowired
     private BillDetailsRepository billDetailsRepository;
     @Autowired
