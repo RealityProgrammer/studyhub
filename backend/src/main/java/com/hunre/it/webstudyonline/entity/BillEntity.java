@@ -3,7 +3,8 @@ package com.hunre.it.webstudyonline.entity;
 import jakarta.persistence.*;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "bill")
@@ -15,16 +16,16 @@ public class BillEntity extends AbstractEntity {
     @ToString.Exclude
     private AccountEntity accountEntity;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    @Column(name = "created_date")
+    private ZonedDateTime createdDate;
 
     public BillEntity() {
     }
 
-    public BillEntity(String code, AccountEntity accountEntity, LocalDateTime createdAt) {
+    public BillEntity(String code, AccountEntity accountEntity, ZonedDateTime createdDate) {
         this.code = code;
         this.accountEntity = accountEntity;
-        this.createdAt = createdAt;
+        this.createdDate = createdDate;
     }
 
     public String getCode() {
@@ -43,11 +44,13 @@ public class BillEntity extends AbstractEntity {
         this.accountEntity = accountEntity;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    @Override
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    @Override
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 }

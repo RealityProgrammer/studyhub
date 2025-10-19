@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @RestController
@@ -17,12 +19,17 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class ApiBill {
     @Autowired
-    private IBillService iBillService;
+    private IBillService billService;
 
     @GetMapping("/list")
     public ResponseEntity<ResponsePage<List<BillDto>>> getAll(Pageable pageable) {
-        ResponsePage<List<BillDto>> responsePage = iBillService.getAll(pageable);
+        ResponsePage<List<BillDto>> responsePage = billService.getAll(pageable);
         return ResponseEntity.ok(responsePage);
+    }
+
+    @GetMapping("/findBillBetweenDates")
+    public ResponseEntity<List<BillDto>> getAllBetween(@RequestParam ZonedDateTime from, @RequestParam ZonedDateTime to) {
+        return ResponseEntity.ok(billService.getBillBetweenCreatedDate(from, to));
     }
 
     @GetMapping("/findBillByAttribute")
@@ -30,31 +37,31 @@ public class ApiBill {
             @RequestParam(required = false) String code,
             @RequestParam(required = false) String accountName,
             Pageable pageable) {
-        ResponsePage<List<BillDto>> responsePage = iBillService.getBillByAttribute(code,accountName,pageable);
+        ResponsePage<List<BillDto>> responsePage = billService.getBillByAttribute(code,accountName,pageable);
         return ResponseEntity.ok(responsePage);
     }
 
     @GetMapping("/getBillByEmail")
     public ResponseEntity<ResponsePage<List<BillDto>>> getBillByEmail(Pageable pageable) {
-        ResponsePage<List<BillDto>> responsePage = iBillService.getBillByEmail(pageable);
+        ResponsePage<List<BillDto>> responsePage = billService.getBillByEmail(pageable);
         return ResponseEntity.ok(responsePage);
     }
 
     @PostMapping("/create")
     public ResponseEntity<BaseResponse<BillDto>> create(@Valid @RequestBody BillDto billDto) {
-        BaseResponse<BillDto> bill = iBillService.createBill(billDto);
+        BaseResponse<BillDto> bill = billService.createBill(billDto);
         return ResponseEntity.ok(bill);
     }
 
     @GetMapping("/findById/{id}")
     public ResponseEntity<BaseResponse<BillDto>> getById(@PathVariable String id) {
-        BaseResponse<BillDto> category = iBillService.getById(id);
+        BaseResponse<BillDto> category = billService.getById(id);
         return ResponseEntity.ok(category);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<BaseResponse<BillDto>> delete(@PathVariable String id) {
-        BaseResponse<BillDto> baseResponse = iBillService.deleteById(id);
+        BaseResponse<BillDto> baseResponse = billService.deleteById(id);
         return ResponseEntity.ok(baseResponse);
     }
 }

@@ -19,8 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +37,7 @@ public class IBillServiceImpl implements IBillService {
     private BillDetailsRepository billDetailsRepository;
     @Autowired
     private JwtService jwtService;
+
     @Override
     public ResponsePage<List<BillDto>> getAll(Pageable pageable) {
         ResponsePage<List<BillDto>> responsePage = new ResponsePage<>();
@@ -73,6 +77,14 @@ public class IBillServiceImpl implements IBillService {
         responsePage.setTotalPages(page.getTotalPages());
         responsePage.setContent(billDtos);
         return responsePage;
+    }
+
+    @Override
+    public List<BillDto> getBillBetweenCreatedDate(ZonedDateTime from, ZonedDateTime to) {
+        List<BillEntity> entities = billRepository.findAllByCreatedDateBetween(from, to);
+        List<BillDto> billDtos = entities.stream().map(billMapper::toDto).toList();
+
+        return billDtos;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.hunre.it.webstudyonline.model.dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class CourseDto {
@@ -15,7 +15,7 @@ public class CourseDto {
     private Long categoryId;
     private String imageUrl;
     private String createdBy;
-    private LocalDateTime createdDate;
+    private ZonedDateTime createdDate;
     private String aim;
     private Integer periods;
     private String categoryName;
@@ -44,11 +44,11 @@ public class CourseDto {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public ZonedDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
     }
 

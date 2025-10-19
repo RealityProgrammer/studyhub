@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Repository
@@ -27,6 +28,6 @@ public interface BillRepository extends JpaRepository<BillEntity,Long>, JpaSpeci
     @Query(value = "SELECT COUNT(o) > 0 FROM BillEntity o WHERE o.accountEntity.email=:email")
     boolean checkBill(String email);
 
-    @Query(value = "SELECT b FROM BillEntity b WHERE b.deleted = false AND b.createdAt >= :from AND b.createdAt <= :to")
-    List<BillEntity> findAllByCreatedDateBetween(LocalDateTime from, LocalDateTime to);
+    @Query(value = "SELECT b FROM BillEntity b WHERE b.deleted = false AND b.createdDate >= :from AND b.createdDate <= :to")
+    List<BillEntity> findAllByCreatedDateBetween(ZonedDateTime from, ZonedDateTime to);
 }

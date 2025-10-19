@@ -23,7 +23,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -98,7 +98,7 @@ public class IAuthServiceImpl implements IAuthService {
         SignUpUserDto signedUpUser = verifying.getUserDto();
 
         AccountEntity account = new AccountEntity(
-            "UID"+ LocalDateTime.now().getYear() + 00001,
+            "UID"+ ZonedDateTime.now().getYear() + 00001,
             signedUpUser.getFullname(),
             passwordEncoder.encode(signedUpUser.getPassword()),
             signedUpUser.getEmail(),
