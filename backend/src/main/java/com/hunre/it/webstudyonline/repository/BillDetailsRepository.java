@@ -8,13 +8,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface BillDetailsRepository extends JpaRepository<BillDetailsEntity,Long> {
-    @Query(value = "SELECT b FROM BillDetailsEntity b WHERE b.deleted=false AND b.billEntity.id =:billId")
+    @Query(value = "SELECT b FROM BillDetailsEntity b WHERE b.deleted = false AND b.billEntity.id = :billId")
     Page<BillDetailsEntity> getByBillId(@Param("billId") Long billId, Pageable pageable);
 
-
-    @Query(value = "SELECT b FROM BillDetailsEntity b WHERE b.billEntity.id =:billId AND b.deleted=false ")
+    @Query(value = "SELECT b FROM BillDetailsEntity b WHERE b.billEntity.id = :billId AND b.deleted = false")
     List<BillDetailsEntity> findByBillId(Long billId);
+
+    @Query(value = "SELECT SUM(b.price) FROM BillDetailsEntity b WHERE b.billEntity.id = :billId AND b.deleted = false")
+    BigDecimal getTotalPriceByBillId(Long billId);
 }

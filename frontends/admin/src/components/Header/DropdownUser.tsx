@@ -21,7 +21,7 @@ const DropdownUser = () => {
     imageUrl: '',
   });
   useEffect(() => {
-    getUser().then(response => response.json()).then((response) => {
+    getUser().then((response) => {
       setData(response.data);
       const arrRole:string[] = response.data.roles.map((role:{name:string}) => role.name);
       localStorage.setItem('role',JSON.stringify(arrRole));

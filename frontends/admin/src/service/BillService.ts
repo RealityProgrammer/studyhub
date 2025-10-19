@@ -1,8 +1,9 @@
 import axios from "axios";
 import { API_KEY, getToken } from '../config/Config.ts';
 import { IBill } from '../types/Bill.ts';
+
 const api=`${API_KEY}/api/bill`;
-export const getAllBill =async (page:number,size:number):Promise<IBill> =>{
+export const getAllBill = async (page:number,size:number):Promise<IBill> =>{
   const token = getToken();
   try {
     const response = await axios.get(`${api}/list`,{
@@ -42,6 +43,25 @@ export const findBillByAttribute = async (filter:any,page:number,size:number) =>
     })
     return response.data;
   }catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+export const findBillBetweenDates = async (from: Date, to: Date) => {
+  const token = getToken();
+  const params = {
+    from: from,
+    to: to,
+  };
+
+  try {
+    const response = await axios.get(`${api}/findBillBetweenDates`, {
+      headers: { 'Authorization': `Bearer ${token}` },
+      params: params,
+    })
+
+    return response.data;
+  } catch (error) {
     console.error(error);
     throw error;
   }

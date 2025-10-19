@@ -72,6 +72,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/api/bill_details/list/**").authenticated()
                         .requestMatchers("/api/cart/add","/api/cart/update/**","/api/cart/delete/**").authenticated()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs.yaml").permitAll()
+                        .requestMatchers("/api/statistics/**").hasAnyRole("ADMIN", "TEACHER")
                         .anyRequest().authenticated()
                 );
 
