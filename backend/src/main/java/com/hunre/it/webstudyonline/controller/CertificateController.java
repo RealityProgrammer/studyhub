@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/certificate")
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
-public class ApiCertificate {
+public class CertificateController {
     @Autowired
     private ICertificateService iCertificateService;
 

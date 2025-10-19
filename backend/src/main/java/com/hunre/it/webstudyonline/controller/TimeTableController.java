@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/timetable")
-public class ApiTimeTable {
+public class TimeTableController {
     @Autowired
     private ITimeTableService timeTableService;
     @GetMapping("/list")

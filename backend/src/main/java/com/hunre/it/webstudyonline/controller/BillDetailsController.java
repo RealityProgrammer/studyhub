@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/bill_details")
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
-public class ApiBillDetails {
+public class BillDetailsController {
     @Autowired
     private IBillDetailsService billDetailsService;
 

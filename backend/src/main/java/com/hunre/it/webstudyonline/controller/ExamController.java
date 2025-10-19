@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/exam")
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
-public class ApiExam {
+public class ExamController {
     @Autowired
     private IExamService iExamService;
     @GetMapping("/list")

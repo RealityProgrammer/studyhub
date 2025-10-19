@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/dis")
-public class ApiDiscord {
+public class DiscordController {
     @Value("${discord.bot_token}")
     private String botToken;
     @Value("${discord.guild_id}")
@@ -20,7 +20,7 @@ public class ApiDiscord {
 
     private WebClient webClient;
 
-    public ApiDiscord() {
+    public DiscordController() {
         webClient= WebClient.builder()
                 .baseUrl("https://discord.com/api/v10")
                 .defaultHeader(HttpHeaders.AUTHORIZATION, "Bot " + botToken)

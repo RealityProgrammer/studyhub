@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin(origins = "http://localhost:3000")
-public class ApiAuth {
+public class AuthController {
     @Autowired
     private IAuthService iAuthService;
     @Autowired
@@ -36,8 +36,6 @@ public class ApiAuth {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-        LoggerFactory.getLogger(ApiAuth.class).info("authenticate");
-
         AccountEntity authenticatedUser = iAuthService.authenticate(loginUserDto);
         AccountDto accountDto = accountMapper.toDto(authenticatedUser);
         String jwtToken = jwtService.generateToken(accountDto);

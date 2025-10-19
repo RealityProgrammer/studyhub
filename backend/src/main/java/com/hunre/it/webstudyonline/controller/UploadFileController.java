@@ -13,7 +13,7 @@ import java.io.IOException;
 @RequestMapping("/api/upload")
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequiredArgsConstructor
-public class ApiUploadFile {
+public class UploadFileController {
 
     @Autowired
     private UploadImageFile uploadImageFile;

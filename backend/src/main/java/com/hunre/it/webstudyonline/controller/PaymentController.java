@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/payment")
-public class ApiPayment {
+public class PaymentController {
     @Autowired
     private IPaymentService paymentService;
     @GetMapping("/vn-pay")

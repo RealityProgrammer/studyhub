@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/inforTeacher")
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
-public class ApiInforTeacher {
+public class InforTeacherController {
     @Autowired
     private IInforTeacherService inforTeacherService;
 
