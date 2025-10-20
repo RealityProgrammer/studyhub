@@ -11,12 +11,12 @@ export default function Footer(props) {
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-12">
-						{
-							CTAEnable === "one" ?
-								<FooterCTA /> :
-								CTAEnable === "two" ?
-									<FooterCTATwo /> : null
-						}
+						{/*{*/}
+						{/*	CTAEnable === "one" ?*/}
+						{/*		<FooterCTA /> :*/}
+						{/*		CTAEnable === "two" ?*/}
+						{/*			<FooterCTATwo /> : null*/}
+						{/*}*/}
 						{/* footer main wrapper */}
 						<div className="footer-one-main-wrapper ptb--100">
 							{/* single sized  footer  */}
@@ -31,7 +31,7 @@ export default function Footer(props) {
 										Chúng tôi là một tổ chức giáo dục đầy nhiệt huyết, tận tụy cung cấp nguồn tài nguyên chất lượng cao cho người học ở mọi hoàn cảnh.
 									</p>
 									<ul className="wrapper-list">
-										<li><i className="fa-regular fa-location-dot"></i> Phúc Diễn, Bắc Từ Liêm, Hà Nội</li>
+										<li><i className="fa-regular fa-location-dot"></i> Phú Diễn, Bắc Từ Liêm, Hà Nội</li>
 										<li><i className="fa-regular fa-phone"></i><a href="tel:+339205335">+(84) 339205335</a></li>
 									</ul>
 								</div>

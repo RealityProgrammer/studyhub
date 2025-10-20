@@ -23,10 +23,10 @@ export default function PagiCourse() {
 
     useEffect(() => {
         if(filters.data !== undefined){
-                api.getCourse({page: currentPage,size:itemsPerPage,name: filters.data.search,aim: filters.data.aim, category: filters.data.category, status: 'Đã Duyệt'}).then((res) => {
-                    setCourses(res.content);
-                    setTotalPaginate(res.totalPages)
-                })
+            api.getCourse({page: currentPage,size:itemsPerPage,name: filters.data.search,aim: filters.data.aim, category: filters.data.category, status: 'Đã Duyệt'}).then((res) => {
+                setCourses(res.content);
+                setTotalPaginate(res.totalPages)
+            })
         }
     }, [filters, currentPage]);
     const sliderOptions = {

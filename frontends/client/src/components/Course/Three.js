@@ -83,7 +83,7 @@ export default function SingleCourseThree( props ) {
 						<span>{studentCount || '22'} Học viên</span>
 					</div>
 				</div>
-				<div className="course-content-area" style={{width:'310px'}}>
+				<div className="course-content-area" style={{width:'310px', zIndex: 1000}}>
 					<h5 className="heading-title">
 						<Link href={`/course/${Slug || 'details'}`}>
 							{Title || 'The Complete Web Developer in 2023: Zero to Mastery'}

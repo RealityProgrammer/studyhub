@@ -18,3 +18,18 @@ export const getMonthlyRevenue = async (year: number) : Promise<number[]> => {
     throw error;
   }
 }
+
+export const getEntitiesCount = async () : Promise<{ account: number, course: number }> => {
+  const token = getToken();
+
+  try {
+    const response = await axios.get(`${api}/entities-count`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

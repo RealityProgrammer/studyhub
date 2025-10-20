@@ -47,22 +47,3 @@ export const findBillByAttribute = async (filter:any,page:number,size:number) =>
     throw error;
   }
 }
-export const findBillBetweenDates = async (from: Date, to: Date) => {
-  const token = getToken();
-  const params = {
-    from: from,
-    to: to,
-  };
-
-  try {
-    const response = await axios.get(`${api}/findBillBetweenDates`, {
-      headers: { 'Authorization': `Bearer ${token}` },
-      params: params,
-    })
-
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
