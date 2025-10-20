@@ -62,7 +62,7 @@ function App() {
           path="/account"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Account" />
               <AccountList />
             </>
           }
@@ -71,7 +71,7 @@ function App() {
           path="/category"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Category" />
               <CategoryList />
             </>
           }
@@ -80,7 +80,7 @@ function App() {
           path="/role"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Role" />
               <RoleList />
             </>
           }
@@ -89,7 +89,7 @@ function App() {
           path="/course"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Course" />
               <CourseList />
             </>
           }
@@ -98,7 +98,7 @@ function App() {
           path="/addCourse"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Add Course" />
               <AddCourse />
             </>
           }
@@ -107,7 +107,7 @@ function App() {
           path="/courseTeacher"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Course" />
               <ListCourseTeacher />
             </>
           }
@@ -116,7 +116,7 @@ function App() {
           path="/gradeTeacher"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Grade" />
               <TeacherGradeList />
             </>
           }
@@ -125,7 +125,7 @@ function App() {
           path="/timetableTeacher"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Time Table" />
               <TeacherTimetable />
             </>
           }
@@ -134,7 +134,7 @@ function App() {
           path="/showDetails/:id"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Details" />
               <ShowCourse />
             </>
           }
@@ -143,7 +143,7 @@ function App() {
           path="/updateCourse/:id"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Update Course" />
               <ShowCourse isEditMode />
             </>
           }
@@ -152,7 +152,7 @@ function App() {
           path="/bill"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Bill" />
               <BillList />
             </>
           }
@@ -162,7 +162,7 @@ function App() {
           path="/certificate"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Certificate" />
               <CertificateList />
             </>
           }
@@ -171,7 +171,7 @@ function App() {
           path="/addCertificate"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Add Certificate" />
               <AddCertificate />
             </>
           }
@@ -180,7 +180,7 @@ function App() {
           path="/certificateTeacher"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Certificate" />
               <CertificateTeacher />
             </>
           }
@@ -189,7 +189,7 @@ function App() {
           path="/grade"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Grade" />
               <GradeList />
             </>
           }
@@ -198,7 +198,7 @@ function App() {
           path="/timetable"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Time Table" />
               <Timetable />
             </>
           }
@@ -207,7 +207,7 @@ function App() {
           path="/updateGrade/:id"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Update Grade" />
               <UpdateGrade />
             </>
           }
@@ -216,7 +216,7 @@ function App() {
           path="/exam"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Exam" />
               <ExamList />
             </>
           }
@@ -225,7 +225,7 @@ function App() {
           path="/showDetailExam/:id"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Exam Details" />
               <ExamComponent />
             </>
           }
@@ -234,90 +234,20 @@ function App() {
           path="/updateExam/:id"
           element={
             <>
-              <PageTitle title="ADMIN" />
+              <PageTitle title="Update Exam" />
               <ExamComponent isEdit />
             </>
           }
         />
-
-
-
-
-
-
         <Route
           path="/profile"
           element={
             <>
-              <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Profile" />
               <Profile />
             </>
           }
         />
-        <Route
-          path="/forms/form-elements"
-          element={
-            <>
-              <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <FormElements />
-            </>
-          }
-        />
-        <Route
-          path="/forms/form-layout"
-          element={
-            <>
-              <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <FormLayout />
-            </>
-          }
-        />
-        <Route
-          path="/tables"
-          element={
-            <>
-              <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Tables />
-            </>
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <>
-              <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Settings />
-            </>
-          }
-        />
-        <Route
-          path="/chart"
-          element={
-            <>
-              <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Chart />
-            </>
-          }
-        />
-        <Route
-          path="/ui/alerts"
-          element={
-            <>
-              <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Alerts />
-            </>
-          }
-        />
-        <Route
-          path="/ui/buttons"
-          element={
-            <>
-              <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Buttons />
-            </>
-          }
-        />
-
       </Routes>
     </DefaultLayout>
   );
