@@ -4,10 +4,39 @@ import { Exam } from '../types/Exam.ts';
 import { toast } from 'react-toastify';
 import error = toast.error;
 const api = `${API_KEY}/api/exam`;
+
 export const getAllExams = async (page:number,size:number) =>{
   const token = getToken();
   try {
     const response = await axios.get(`${api}/list`,{
+      params:{page, size },
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    return response.data;
+  }catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export const getUserExams = async (page:number,size:number) =>{
+  const token = getToken();
+  try {
+    const response = await axios.get(`${api}/getForUser`,{
+      params:{page, size },
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    return response.data;
+  }catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export const getExamsCreatedByUser = async (page: number, size: number) => {
+  const token = getToken();
+  try {
+    const response = await axios.get(`${api}/getCreatedByUser`,{
       params:{page, size },
       headers: { 'Authorization': `Bearer ${token}` }
     })

@@ -33,12 +33,42 @@ public class ExamService {
     @Autowired
     private BillRepository billRepository;
 
-    public ResponsePage<List<ExamDto>> getAll(Pageable pageable) {
+    public ResponsePage<List<ExamDto>> getExams(Pageable pageable) {
+        ResponsePage<List<ExamDto>> responsePage = new ResponsePage<>();
+
+        Page<ExamEntity> page = examRepository.getExams(pageable);
+        List<ExamDto> examDtos = page.getContent().stream().map(examMapper::toDto).toList();
+
+        responsePage.setPageNumber(pageable.getPageNumber());
+        responsePage.setPageSize(pageable.getPageSize());
+        responsePage.setTotalElements(page.getTotalElements());
+        responsePage.setTotalPages(page.getTotalPages());
+        responsePage.setContent(examDtos);
+
+        return responsePage;
+    }
+
+    public ResponsePage<List<ExamDto>> getUserExams(Pageable pageable) {
         ResponsePage<List<ExamDto>> responsePage = new ResponsePage<>();
         AuthDto authDto = jwtService.decodeToken();
         String email = authDto.getEmail();
         boolean check = billRepository.checkBill(email);
-        Page<ExamEntity> page = examRepository.getExams(pageable,check);
+        Page<ExamEntity> page = examRepository.getExams(pageable, true);
+        List<ExamDto> examDtos = page.getContent().stream().map(examMapper::toDto).toList();
+        responsePage.setPageNumber(pageable.getPageNumber());
+        responsePage.setPageSize(pageable.getPageSize());
+        responsePage.setTotalElements(page.getTotalElements());
+        responsePage.setTotalPages(page.getTotalPages());
+        responsePage.setContent(examDtos);
+
+        return responsePage;
+    }
+
+    public ResponsePage<List<ExamDto>> getCreatedByUser(Pageable pageable) {
+        ResponsePage<List<ExamDto>> responsePage = new ResponsePage<>();
+        AuthDto authDto = jwtService.decodeToken();
+        String email = authDto.getEmail();
+        Page<ExamEntity> page = examRepository.getExamsCreatedBy(pageable, email);
         List<ExamDto> examDtos = page.getContent().stream().map(examMapper::toDto).toList();
         responsePage.setPageNumber(pageable.getPageNumber());
         responsePage.setPageSize(pageable.getPageSize());

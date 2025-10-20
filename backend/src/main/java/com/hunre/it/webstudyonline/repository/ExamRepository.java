@@ -10,8 +10,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExamRepository extends JpaRepository<ExamEntity,Long> {
-//    @Query(value = "SELECT e FROM ExamEntity e WHERE e.deleted=false ORDER BY e.id DESC ")
-//    Page<ExamEntity> getExams(Pageable pageable);
+    @Query(value = "SELECT e FROM ExamEntity e WHERE e.deleted = false ORDER BY e.id DESC ")
+    Page<ExamEntity> getExams(Pageable pageable);
+
     @Query(value = " SELECT e FROM ExamEntity e WHERE e.deleted = false AND (:checkBill = true OR e.isFree = true) ORDER BY e.id DESC")
     Page<ExamEntity> getExams(Pageable pageable,@Param("checkBill") boolean checkBill);
     @Query(value = "SELECT e FROM ExamEntity e WHERE e.deleted=false " +
@@ -20,4 +21,7 @@ public interface ExamRepository extends JpaRepository<ExamEntity,Long> {
     Page<ExamEntity> getExamsByNameAndCode(String name,String code, Pageable pageable);
     @Query(value = "SELECT e FROM ExamEntity e WHERE e.deleted=false AND e.code=:codeExam")
     ExamEntity findByCode(String codeExam);
+
+    @Query(value = "SELECT e FROM ExamEntity e WHERE e.deleted = false AND e.createdBy = :email")
+    Page<ExamEntity> getExamsCreatedBy(Pageable pageable, String email);
 }

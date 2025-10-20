@@ -20,8 +20,20 @@ public class ExamController {
     private ExamService examService;
 
     @GetMapping("/list")
-    public ResponseEntity<ResponsePage<List<ExamDto>>> getAll(Pageable pageable) {
-        ResponsePage<List<ExamDto>> responsePage = examService.getAll(pageable);
+    public ResponseEntity<ResponsePage<List<ExamDto>>> list(Pageable pageable) {
+        ResponsePage<List<ExamDto>> responsePage = examService.getExams(pageable);
+        return ResponseEntity.ok(responsePage);
+    }
+
+    @GetMapping("/getForUser")
+    public ResponseEntity<ResponsePage<List<ExamDto>>> getForUser(Pageable pageable) {
+        ResponsePage<List<ExamDto>> responsePage = examService.getUserExams(pageable);
+        return ResponseEntity.ok(responsePage);
+    }
+
+    @GetMapping("/getCreatedByUser")
+    public ResponseEntity<ResponsePage<List<ExamDto>>> getCreatedByUser(Pageable pageable) {
+        ResponsePage<List<ExamDto>> responsePage = examService.getCreatedByUser(pageable);
         return ResponseEntity.ok(responsePage);
     }
 

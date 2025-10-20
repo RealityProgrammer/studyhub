@@ -2,9 +2,16 @@ import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb.tsx';
 import { Eye, FileText, Pencil, RefreshCcw, Search, Trash2, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Exam } from '../../types/Exam.ts';
-import { addExam, deleteExamById, findByNameAndCode, getAllExams } from '../../service/ExamService.ts';
+import {
+  addExam,
+  deleteExamById,
+  findByNameAndCode,
+  getAllExams,
+  getExamsCreatedByUser
+} from '../../service/ExamService.ts';
 import { confirmDelete, showAlert } from '../../utils/swalUtils.ts';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../route/route.ts';
 
 const ExamList = () => {
   const [exam, setExam] = useState<Exam[]>([]);
@@ -30,12 +37,30 @@ const ExamList = () => {
   }, [currentPage, itemsPerPage,check]);
 
   function getExam() {
-    getAllExams(currentPage, itemsPerPage)
-      .then((response: any) => {
-        setExam(response.content);
-        setTotalExam(response.totalElements);
-      })
-      .catch((e) => console.error(e));
+    getUser().then((res) => {
+      const arrRole: string[] = res.data.roles.map((role: { name: string }) => role.name);
+
+      if (arrRole.includes('ADMIN')) {
+        getAllExams(currentPage, itemsPerPage)
+          .then((response: any) => {
+            setExam(response.content);
+            setTotalExam(response.totalElements);
+          })
+          .catch((e) => console.error(e));
+      } else if (arrRole.includes('TEACHER')) {
+        getExamsCreatedByUser(currentPage, itemsPerPage).then((response: any) => {
+          setExam(response.content);
+          setTotalExam(response.totalElements);
+        }).catch((e) => console.error(e));
+      }
+    });
+
+    // getAllExams(currentPage, itemsPerPage)
+    //   .then((response: any) => {
+    //     setExam(response.content);
+    //     setTotalExam(response.totalElements);
+    //   })
+    //   .catch((e) => console.error(e));
   }
   function getAll(){
     if (searchParams.code || searchParams.name) {

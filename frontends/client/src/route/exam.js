@@ -1,8 +1,9 @@
 import axiosInstance from "../route/interceptor.js";
 const api = '/api/exam'
 const apiDetails = '/api/exam_details'
-async function getExam(page, size) {
-    const response = await axiosInstance.get(`${api}/list`, {
+
+async function getUserExams(page, size) {
+    const response = await axiosInstance.get(`${api}/getForUser`, {
         params: { page, size },
     });
     return response.data;
@@ -27,4 +28,4 @@ async function getExamDetailsByExamId(page,size,id) {
     });
     return response.data;
 }
-export default {getExam,getExamById,getExamByName,getExamByCode,getExamDetailsByExamId};
+export default {getExam: getUserExams,getExamById,getExamByName,getExamByCode,getExamDetailsByExamId};
