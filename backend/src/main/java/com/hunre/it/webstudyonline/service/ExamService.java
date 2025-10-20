@@ -25,7 +25,7 @@ import java.util.Optional;
 @Service
 public class ExamService {
     @Autowired
-    private ExamRepository exampRepository;
+    private ExamRepository examRepository;
     @Autowired
     private ExamMapper examMapper;
     @Autowired
@@ -38,13 +38,14 @@ public class ExamService {
         AuthDto authDto = jwtService.decodeToken();
         String email = authDto.getEmail();
         boolean check = billRepository.checkBill(email);
-        Page<ExamEntity> page = exampRepository.getExams(pageable,check);
+        Page<ExamEntity> page = examRepository.getExams(pageable,check);
         List<ExamDto> examDtos = page.getContent().stream().map(examMapper::toDto).toList();
         responsePage.setPageNumber(pageable.getPageNumber());
         responsePage.setPageSize(pageable.getPageSize());
         responsePage.setTotalElements(page.getTotalElements());
         responsePage.setTotalPages(page.getTotalPages());
         responsePage.setContent(examDtos);
+
         return responsePage;
     }
 
@@ -53,7 +54,7 @@ public class ExamService {
         ExamEntity examEntity = examMapper.toEntity(examDto);
         examEntity.setCode(GenerateCode.generateUniqueCode("EXAM"));
         examEntity.setDeleted(false);
-        examEntity = exampRepository.save(examEntity);
+        examEntity = examRepository.save(examEntity);
         response.setData(examMapper.toDto(examEntity));
         response.setMessage(Constant.HTTP_MESSAGE.SUCCESS);
         response.setCode(HttpStatus.CREATED.value());
@@ -70,7 +71,7 @@ public class ExamService {
         }
         Long examId = utils.getT();
         ExamEntity examEntity = examMapper.toEntity(examDto);
-        Optional<ExamEntity> optionalExam = exampRepository.findById(examId);
+        Optional<ExamEntity> optionalExam = examRepository.findById(examId);
         if (optionalExam.isEmpty()){
             response.setCode(HttpStatus.BAD_REQUEST.value());
             response.setMessage(Constant.HTTP_MESSAGE.NOTFOUND);
@@ -78,7 +79,7 @@ public class ExamService {
         }
         examEntity.setDeleted(false);
         examEntity.setId(examId);
-        exampRepository.save(examEntity);
+        examRepository.save(examEntity);
         response.setData(examMapper.toDto(examEntity));
         response.setMessage(Constant.HTTP_MESSAGE.SUCCESS);
         response.setCode(HttpStatus.OK.value());
@@ -95,7 +96,7 @@ public class ExamService {
 
     public ResponsePage<List<ExamDto>> findByCodeAndName(String name, String code, Pageable pageable) {
         ResponsePage<List<ExamDto>> responsePage = new ResponsePage<>();
-        Page<ExamEntity> page = exampRepository.getExamsByNameAndCode(name,code,pageable);
+        Page<ExamEntity> page = examRepository.getExamsByNameAndCode(name,code,pageable);
         List<ExamDto> examDtos = page.getContent().stream().map(examMapper::toDto).toList();
         responsePage.setPageNumber(pageable.getPageNumber());
         responsePage.setPageSize(pageable.getPageSize());
@@ -107,7 +108,7 @@ public class ExamService {
 
     public BaseResponse<ExamDto> getExamByCode(String examCode) {
         BaseResponse<ExamDto> response = new BaseResponse<>();
-        ExamEntity examEntity = exampRepository.findByCode(examCode);
+        ExamEntity examEntity = examRepository.findByCode(examCode);
         ExamDto examDto = examMapper.toDto(examEntity);
         response.setData(examMapper.toDto(examEntity));
         response.setMessage(Constant.HTTP_MESSAGE.SUCCESS);
@@ -123,7 +124,7 @@ public class ExamService {
             return response;
         }
         Long examId = utils.getT();
-        Optional<ExamEntity> examEntity = exampRepository.findById(examId);
+        Optional<ExamEntity> examEntity = examRepository.findById(examId);
         if (examEntity.isEmpty()) {
             response.setCode(HttpStatus.BAD_REQUEST.value());
             response.setMessage(Constant.HTTP_MESSAGE.NOTFOUND);
@@ -133,7 +134,7 @@ public class ExamService {
         if (isDelete) {
             entity.setDeleted(true);
         }
-        entity = exampRepository.save(entity);
+        entity = examRepository.save(entity);
         ExamDto dto = examMapper.toDto(entity);
         response.setData(dto);
         response.setCode(HttpStatus.OK.value());

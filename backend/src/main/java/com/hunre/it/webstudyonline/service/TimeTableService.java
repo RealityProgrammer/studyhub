@@ -100,7 +100,7 @@ public class TimeTableService {
         return response;
     }
 
-    private Date calculateNextDate(Date date,Map<Integer,Integer> map) {
+    private Date calculateNextDate(Date date, Map<Integer,Integer> map) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
